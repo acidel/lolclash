@@ -19,13 +19,10 @@ mixin teamlist(teams, page)
 						else if team.delta < -2
 							span.red
 								=team.delta
-						else
-
-					
 					td(style="width:30px;")
 						if (team.logos[1] !== "Unknown.png")
 							a(href= '/teams/' + team.url)
-								img(src= '/img/logo/1/'+ team.logos[1] height=22 width=22)
+								img(src= '/img/logo/1/'+ team.logos[1])
 					td.teamname(style="width:500px;")
 						a.lb(href= '/teams/' + team.url) #{team.nameMed}
 					td.center.yellow(style="width: 90px;")= Math.round(team.elo)
