@@ -1,0 +1,91 @@
+include header
+include footer
+include matchlist
+include eventmatchlist
+extends layout
+block content
+	div#screencontainer
+		div#content
+			+header()
+			div#wrapper
+				div#leftcontainer
+					div#path
+						h1
+							a(href= '/')
+								="Home"
+							=" / "
+							a(href= '/vods/')
+								="Event VoDs"
+							=" / "
+							a(href= '/vods/' + tourneyData.url)
+								=tourneyData.name
+
+					div.contenthugeheader.headersplit(style="margin-bottom: 6px;")
+						h1
+							=tourneyData.name
+					div.darkbox
+						h1.gold
+							=tourneyData.startDate.toDateString().slice(4,10)
+							=" - "
+							=tourneyData.endDate.toDateString().slice(4,10)
+							span(style="padding-left: 50px; font-size: 14px")
+								a.lb(href= tourneyData.website)
+										=tourneyData.website
+							span(style="float: right; padding-right: 20px;")
+								if (tourneyData.progress === "In Progress")
+									span.yellow
+										="In Progress"
+								else if (tourneyData.progress === "Upcoming")
+									span.grey
+										="Upcoming"
+								else
+									span.green
+										="Completed"
+					if tourneyData.related[0]
+						div.darkbox(style="margin-top: 1px;")
+								each rel, i in tourneyData.related
+									span(style="padding-right: 20px;")
+										a.lb(href= '/vods/' + rel.url)
+											=rel.name
+									if tourneyData.related.length > 1
+										span.gold(style="padding-right: 20px")
+											="|"
+					div.tourneycontainersmall.contentlarge
+						div.eventlistleft
+							a(href= '/events/' + tourneyData.name)
+								img(src= '/img/eventlogo.png')
+						div.eventlistright
+							p
+								=tourneyData.description
+					div.contentlargeheader.headerborder.smallmargin
+						h1
+							="TEAMS"
+					div#teamgrid.contentlarge()
+						ul
+							each team, i in teams
+								if (team.name !== "?" && !team.fake)
+									a(href= '/teams/' + team.url)
+										li
+											div(style="float: left; padding-right: 5px" )
+												if (team.logos[3] !== "Unknown.png")
+													img(src= '/img/logo/3/' + team.logos[3] height= "40" width = "40")
+												else
+													div(style= "height: 40px; width = 40px;")
+											div(style="text-align: right")
+												=team.name
+												=team.fake
+						div(style="clear:both")
+					div.contenthugeheader.smallmargin.headersplit
+						h1
+							="RESULTS & VODS"
+					+eventmatchlist(eventResults)
+				div#rightcontainer
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 1
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 2
+					div#ad1(style='background-image:url("/img/v1.png")')
+	+footer()
+

@@ -1,0 +1,143 @@
+include header
+include footer
+include matchlist
+extends layout
+
+
+
+
+
+block content
+	div#screencontainer
+		div#content
+			+header()
+			div#wrapper
+				div#fullcontainer
+					div#path
+						h1
+							a(href= '/')
+								="Home"
+							=" / "
+							a(href= '/calendar/')
+								="Calendar"
+					div.contenthugeheader.headersplit.smallmargin
+						h1
+							="CALENDAR"
+					div#lolcalendar
+						div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
+							div(class="carousel-inner")
+								-var lastDate = new Date();
+								-var today = new Date();
+								- for (var i = 0; i+6 <= calendarData.length; i+=7)
+									-if (i === 14) {var divClass = "item active"} else {var divClass = "item"}
+									div(class=divClass)
+										table(style="vertical-align: top;")
+											tr
+												td(style="width:40px; border-style: none;")
+												-for (var j=0; j < 7; j++)
+													td.center(style="width: 120px;")
+														if (calendarData[i+j].date.getDate() === today.getDate())
+															h1.gold
+																=calendarData[i+j].date.toDateString().slice(0,8)
+																=calendarData[i+j].date.getDate()
+														else
+															h1.lb
+																=calendarData[i+j].date.toDateString().slice(0,8)
+																=calendarData[i+j].date.getDate()
+												td(style="width:40px; border-style: none;")
+											tr.calendartable
+												td(style="border-style: none;")
+												-for (var j=0; j < 7; j++)
+													td(style="vertical-align: top;")
+														-var timeSpace = 0;
+														-var lastTime = 0;
+														-var lastEvent;
+														-var lastSub;
+														each result, k in calendarData[i+j].results
+															div.center
+																-timeSpace = result.date.getHours()-lastTime-1;
+																-lastTime = result.date.getHours();
+																-var boxstyle = "";
+																if (result.eventName !== lastEvent && k !== 0)
+																	div(style="height: 2px;")
+																if (result.region === "K")
+																	-boxstyle = "background-color: #0C161F; border-color: #3E6D7D;";
+																else if (result.region === "C")
+																	-boxstyle = "background-color: #1C0B0B; border-color: #7F3F3F;";
+																else if (result.region === "E")
+																	-boxstyle = "background-color: #1D1E0C; border-color: #797C3D";
+																else if (result.region === "N")
+																	-boxstyle = "background-color: #0B0D1E; border-color: #3F477F";
+																else if (result.region === "A")
+																	-boxstyle = "background-color: #140B1C; border-color: #5E3D7C";
+																else if (result.region === "I")
+																	-boxstyle = "background-color: #1C140A; border-color: #7F623F";
+																if (result.eventName !== lastEvent || result.date.getDate() !== lastDate.getDate())
+																	div.calendarbox.border(style=boxstyle)
+																		-lastEvent = result.eventName;
+																		-lastDate = result.date;
+																		-lastSub = result.eventSub;
+																		div.white
+																			=result.eventName.replace(/\b\d{4}\b/g,"").slice(0,13)
+																		div.grey
+																			=result.eventSub.slice(0,13)
+																if (result.eventSub !== lastSub && result.eventName === lastEvent)
+																	div.calendarbox.border(style=boxstyle)
+																		div(style=boxstyle)
+																			-lastSub = result.eventSub;
+																			-lastDate = result.date;
+																			div.white
+																				=result.eventSub.slice(0,13)
+																div.calendarbox.border(style=boxstyle)
+																	div.center.lightgrey(style="font-size: 15px; margin-bottom: 0px")
+																		span.hours
+																			if (result.date.getHours() === 0)
+																				="12"
+																			else if result.date.getHours() <= 12
+																				=result.date.getHours()
+																			else
+																				=result.date.getHours()-12
+
+																		if result.date.getMinutes() !== 0
+																			=':' + ('0' + result.date.getMinutes()).slice(-2) 
+																		span.ampm
+																			if result.date.getHours() < 12
+																				=" AM"
+																			else
+																				=" PM"
+																	div.center.grey(style="height: 35px;")
+																		div.center.lb(style="width:45%; float: left;")
+																			if result.logos.team1[4] !== "Unknown.png"
+																				img(src= '/img/logo/4/'+ result.logos.team1[4] height= "30" width = "30")
+																			else
+																				div(style="height: 35px; width: 35px;")
+																		div.center.darkgrey(style="width:10%; float: left;line-height: 30px;" )
+																			="vs"
+																		div.center.lb(style="width:45%; float: right;")
+																			if result.logos.team2[4] !== "Unknown.png"
+																				img(src= '/img/logo/4/'+ result.logos.team2[4] height= "30" width = "30")
+																			else
+																				div(style="height: 35px; width: 35px;")
+																	div(style="height: 20px;")
+																		div.center(style="width:50%; float: left;font-size: 15px;")
+																			if (result.teams[0] === "?")
+																				span.grey
+																					="TBD"
+																			else
+																				=result.teamsShort[0].slice(0,6)
+																		div.center(style="width:50%; float: right;font-size: 15px;")
+																			if (result.teams[0] === "?")
+																				span.grey
+																					="TBD"
+																			else
+																				=result.teamsShort[1].slice(0,6)
+												td(style="border-style: none;")
+							a(class="left carousel-control" href="#carousel-example-generic" data-slide="prev")
+								span(class="glyphicon glyphicon-chevron-left")
+							a(class="right carousel-control" href="#carousel-example-generic" data-slide="next")
+								span(class="glyphicon glyphicon-chevron-right")
+					script(src='/carousel.js' type='text/javascript' charset='utf8')
+
+					
+	+footer()
+

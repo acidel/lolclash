@@ -1,0 +1,1059 @@
+
+body {
+ 	padding: 0;
+ 	margin: 0;
+ 	font: 15px "AvantGarde Bk Bt", sans-serif;
+	background-color: #0B0B0B;
+ 	color: #E5E5E5;
+}
+
+a {
+
+	color: #E5E5E5;
+}
+
+a:hover
+{
+	color: #018FFD;
+	text-decoration: underline;
+
+}
+
+h1, h2, h3, h4, p
+
+{
+	margin: 0;
+	padding: 0;
+	color: #F8F8F8;
+}
+
+h2
+{
+	font-size: 25px;
+}
+
+ul
+{
+	padding: 0;
+	list-style-type: none;
+	margin: 0;
+}
+
+
+.nobg {
+	background-color: #0B0B0B;
+}
+
+.contentdarkheader {
+	background-color: #002B4B;
+	height: 30px;
+	color: white;
+
+}
+
+.contentlargeheader {
+	height: 30px;
+	color: white;
+
+}
+.headersplit
+{
+	height: 30px;
+		background-color: #0073C6;
+
+}
+
+.headersplit h1{
+	display: inline-block;
+	padding-right: 31px;
+	background-color: #00233F;
+}
+
+.contenthugeheader {
+	background-color: #002B4B;
+	height: 52px;
+	color: white;
+
+}
+
+.contentdarkheader h1 {
+
+
+	font-size: 19px;
+	line-height: 30px; 
+	font-weight:500;
+	padding-left: 6px;
+	margin: 0;
+}
+
+.contentlargeheader h1 {
+	font-size: 18px;
+	line-height: 30px; 
+	font-weight:500;
+	padding-left: 6px;
+	margin: 0;
+}
+
+.contenthugeheader h1 {
+	font-size: 27px;
+	line-height: 52px; 
+	font-weight:700;
+	padding-left: 14px;
+	margin: 0;
+}
+
+
+#topmenu
+	{
+		height:35px;
+		background-color: #000000;
+	}
+
+
+html, body, #screencontainer { height: 100%; }
+body > #screencontainer { height: auto; min-height: 100%; }
+
+#content
+{
+	padding-bottom: 51px;
+}
+
+#wrapper
+	{
+		width: 1000px;
+		margin: 0 auto;
+	}
+
+
+#header
+	{
+		height: 77px;
+		background-image:url("/img/t1.png");
+		background-repeat:no-repeat;
+		background-position: left center;
+		
+	}
+
+#footer
+	{
+		clear:both;
+		position: relative;
+		z-index: 10;
+		height: 51px;
+		margin-top: -51px;
+		background-image:url("/img/ftbg.png");
+		background-repeat: repeat-x;
+		
+	}
+
+#footer ul
+{
+	float:right;
+}
+
+#footer img
+{
+	padding-left: 40px;
+}
+
+#footer ul li { 
+
+	display: inline;
+	padding-right: 20px;
+	line-height: 51px;
+}
+#menu
+	{
+		height: 47px;
+		background-image:url("/img/mbg1.png");
+		background-repeat: repeat-x;
+		margin: 0 0 ;
+		padding: 0 0;
+	}
+#menu ul
+	{
+		list-style-type: none;
+		font-size: 20px;
+		padding-right: 400px;
+		padding-left: 6px;
+		text-align: center;
+		margin: 0 0 ;
+	}
+
+#menu ul li { 
+	display: inline;
+	padding-right: 55px;
+	line-height: 47px;
+}
+
+#menu ul li a 	{
+	text-decoration: none;
+	color: #E7E7E7;
+}
+
+#menu ul li a:hover {
+	
+	color: #018FFD;
+	text-decoration: underline;
+}
+#screencontainer
+{
+	min-height:100%;
+	width: 100%;	
+}
+
+
+#leftcontainer
+{
+	margin-top: 21px;
+	float: left;
+	width:760px;
+	padding-bottom:51px;
+
+}
+#rightcontainer
+{
+	margin-top: 21px;
+	float: right;
+	width: 160px;
+	margin-right:50px;
+
+}
+#fullcontainer
+{
+	margin-top: 21px;
+	width:920px;
+	padding-bottom:51px;
+
+}
+
+.contentlarge
+{
+	margin-bottom: 21px;
+}
+
+.border
+{
+	border: 1px solid;
+}
+
+.bordernotop
+{
+	border: 1px solid;
+	border-top: none;
+}
+.calendarbox
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #131313;
+	font-size: 13px;
+	margin-bottom: -1px;
+
+}
+
+.calleft 
+{
+	float: left;
+	margin-left: 8px;
+}
+
+.calright
+{
+	float: right;
+	margin-right: 12px;
+}
+
+#path
+{
+	padding-bottom: 11px;
+}
+
+#path h1 a, h1
+{
+	font-size: 17px;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+#path h1 a
+{
+	padding-right: 6px;
+	padding-left: 6px;
+}
+
+
+
+#newsheader
+{
+	width: 100%;
+	height: 290px;
+	
+}
+#upcomingmatches
+{
+	background-color: #151515;
+	margin-bottom: 21px;
+	height: 150px;
+}
+
+.contentlarge table
+{
+	width: 100%;
+}
+
+.darkgreybg
+{
+	background-color: #11141B;
+	
+}
+
+.fronttable th {
+	background-color: #002B4B;
+	font-size: 13px;
+	padding: 0;
+	height: 28px;
+	line-height: 28px;
+}
+th
+{
+	font-weight: normal;
+	font-size: 12px;
+}
+
+td, th
+{
+	text-align: left;
+	padding-left: 6px;
+	height: 30px;
+}
+.teamname
+{
+	text-align: left;
+	padding-left: 20px;
+}
+table a
+{
+	text-decoration:none;
+
+}
+table
+{
+	border-collapse: collapse;
+}
+.white
+{
+	color: #E5E5E5;
+}
+.red
+{
+	color: #841400;
+}
+
+.blue
+{
+	color: #018FFD;
+}
+
+.noborder
+{
+	border-style: none;
+}
+.green
+{
+	color: #1A8302;
+}
+
+.gold
+{
+	color: #B48B00;
+}
+
+.grey
+{
+	color:#A4A4A4;
+}
+
+.lightgrey
+{
+	color:#C1C1C1;
+}
+.darkgrey
+{
+	color:#828282;
+}
+
+.lb
+{
+	color: #88CBFF;
+}
+
+.lp
+{
+	color: #9D89FF;
+}
+
+.dblue
+{
+	color: #0272C6;
+}
+
+.yellow
+{
+	color: #FDC100;
+}
+
+#teamlist tr:nth-child(even), #teamlineup tr:nth-child(even),  #teammatches tr:nth-child(even) td{
+	background-color: #131313;
+}
+
+#teamlist table {
+	border-style: solid;
+	border-color: #002B4B;
+	border-width: 2px;
+}
+.center
+{
+	text-align: center;
+}
+.left
+{
+	text-align: left;
+}
+
+.calendartable td
+{
+	padding: 0;
+	padding-bottom: 5px;
+	height: 600px;
+}
+#feature
+{
+	float: left;
+	height:300px;
+	width:520px;
+	background-repeat: no-repeat;
+}
+
+#featureright
+{
+	float: right;
+	height:145px;
+	width:230px;
+	background-repeat: no-repeat;
+	padding-top:10px;
+}
+
+#spotlightmatches
+{
+	height: 300px;
+
+}
+
+#spotlight
+{
+	float:left;
+	width: 220px;
+	height: 260px;
+	margin-top: 10px;
+	margin-right: 20px;
+	background-image:url("/img/hotbg.png");
+}
+
+#spotlight h1, h2, h3, h4, p
+{
+	padding-left: 10px;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+#spotlight h1
+{
+	font-size: 14px;
+	padding-top: 10px;
+}
+
+#spotlight h2
+{
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#spotlight h3
+{
+	font-size: 22px;
+	padding-top: 28px;
+}
+
+#spotlight img
+{
+	float: right;
+	padding-right: 15px;
+}
+
+#spotlight p
+{
+	padding-top: 10px;
+	font-size: 13px;
+	color:#A4A4A4
+}
+#ad1
+{
+	border-style: solid;
+	border-color: #151515;
+	border-width: 1px;
+	height:572px;
+	background-repeat: no-repeat;
+}
+
+.bold
+{
+	font-weight: 700;
+}
+
+#matchlist table
+{
+	border-collapse: separate;
+	border-spacing: 0px 11px;
+	background: black;
+	padding: 0;
+	margin: 0;
+
+}
+#matchlist tr
+{
+	outline: 1px solid #262525;
+	padding: 0;
+	margin: 0;
+
+}
+#matchsorter
+{
+	background-color: #131313;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	height:47px;
+}
+#matchlist th
+{
+	background-color: #0B0B0B;
+}
+#matchlist
+{
+	background: black;
+}
+#matchlist td
+{
+	background-color: #131313;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	height:47px;
+
+
+}
+
+#listbrowser
+{
+	padding: 0;
+	margin: 0;
+	height: 30px;
+	background: #131313;
+}
+
+#listbrowser ul 
+{
+	padding: 0px;
+	margin: 0px;
+}
+#listbrowser ul li {
+
+	font-size: 16px;
+	list-style-type: none;
+	float: left;
+	line-height: 30px;
+	text-align: center;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#listbrowser ul li a
+{
+	text-align: center;	
+
+	
+}
+
+.listbrowserbutton li
+{
+	background-color: #00406C;
+	display: block;
+
+}
+
+.listbrowserbutton a
+{
+	text-decoration: none;
+}
+
+#listbrowser li:hover
+{
+	background-color: #002B4B;
+	display: block;
+	color: white;
+	color: #018FFD;
+}
+
+#teamvitals
+{
+	float: right;
+}
+
+#teamvitals table
+{
+	float:right; 
+	width:400px;
+	text-align: left;	
+
+}
+
+#teamlineup td
+{
+	text-align: left;
+}
+#teamvitals td
+
+{
+	height: 27px;
+	text-align: left;
+	background-image:url("/img/tvitalsbg.png");
+	background-repeat: repeat-x;
+}
+
+#teambiotext
+{
+	padding: 18px;
+	background-color: #131313;
+}
+
+.filtertable {
+
+	height: 84px;
+}
+
+.filtertable ul
+{
+	margin: 0;
+	padding: 0;
+}
+.filtertable li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	float: left;
+	padding-right: 3px;
+	width: 70px;
+	font-size: 19px;
+	text-align: center;
+	height: 84px;
+	line-height: 84px;
+}
+
+
+.filtertable li a {
+	display: block;
+	text-decoration: none;
+
+}
+
+.headerborder
+{
+
+	border-bottom: solid 3px #002B4B;
+}
+
+.blackspace 
+{
+	margin-top: 5px;
+}
+
+.darkbox
+{
+	padding-left: 14px;
+	min-height: 35px;
+	line-height: 35px;
+	background-color: #0C1115;
+	border: solid 1px #072338;
+}
+
+.darkbox a
+{
+	text-decoration: none;
+}
+
+.matchfilter a
+{
+	text-decoration: none;
+}
+
+.matchfilter .darkbox:hover{
+	background-color: #0C1115;
+	border: solid 1px #E5E5E5;;
+}
+
+#teamgrid ul li {
+	height: 40px;
+	width: 115px;
+	float: left;
+	font-size: 14px;
+	border: solid 1px #344E5F;
+	padding: 4px;
+	margin-left: 7px;
+	margin-bottom: 7px;
+}
+
+#teamgrid li:hover {
+	background-color: #0C1115;
+	border: solid 1px #E5E5E5;;
+}
+
+.switchplus {
+	font-size: 23px;
+}
+
+.smallmargin
+{
+	margin-bottom: 13px;
+}
+
+#teamgrid a
+{
+	text-decoration: none;
+}
+
+.eventlistleft
+{
+	float: left;
+	width: 250px;
+	border-right: solid 1px #072338;
+	border-bottom: solid 1px #072338;
+	text-align: center;
+	padding: 15px;
+}
+
+.eventlistright
+{
+	float: right;
+	width: 449px;
+	border-bottom: solid 1px #072338;
+	padding: 15px;
+}
+
+.tourneycontainer
+{
+	min-height: 220px; 
+	width: 100%;
+}
+
+.tourneycontainersmall
+{
+	min-height: 180px; 
+	width: 100%;
+}
+
+.eventlistright p
+
+{
+	margin-bottom: 30px;
+	padding: 0;
+}
+
+.button
+{
+	display: inline-block;
+	color: #E5E5E5;
+	text-align: center;
+	padding: 8px;
+	background-color: #260069;
+	height: 28px;
+	border: solid 1px #260069;
+	line-height: 28px;
+	font-weight: normal;
+	margin-top: 5px;
+}
+
+.buttonsmall
+{
+	display: inline-block;
+	color: #E5E5E5;
+	text-align: center;
+	padding: 5px;
+	height: 10px;
+	background-color: #260069;
+	border: solid 1px #260069;
+	line-height: 10px;
+	font-weight: normal;
+	margin-top: 5px;
+}
+
+
+.button:hover, .buttonsmall:hover {
+
+	border: solid 1px #E5E5E5;
+	text-decoration: underline;
+	color: white;
+
+}
+
+#tourneylist
+{
+
+}
+
+.clearboth
+{
+	clear:both;
+}
+
+#tourneylist ul li {
+	float: left;
+	width: 220px;
+	height: 151px;
+	margin-right: 20px;
+	margin-bottom: 12px;
+}
+
+.tourneybox1 {
+	background-image:url("/img/tb1.png");
+}
+
+.tourneybox1:hover {
+	background-image:url("/img/tb1h.png");
+}
+
+.tourneybox2 {
+	background-image:url("/img/tb2.png");
+}
+
+.tourneybox2:hover {
+	background-image:url("/img/tb2h.png");
+}
+
+
+.tourneybox3 {
+	background-image:url("/img/tb3.png");
+}
+
+.tourneybox3:hover {
+	background-image:url("/img/tb3h.png");
+}
+
+
+.tbox1 {
+height: 35px;
+line-height: 35px;
+padding-left: 11px;
+}
+.tbox2 {
+ text-align: center;
+ height:75px;
+}
+.tbox3 {
+padding-left: 50px;
+height: 40px;
+line-height: 40px;
+}
+
+#teaminfo{
+	background-image:url("/img/tibg.png");
+	height: 210px;
+	width: 100%;
+	padding-top: 7px;
+	padding-left: 6px;
+}
+
+.teamlogo
+{	
+	float: left;
+	width: 283px;
+	height:217px;
+	text-align: center;
+	line-height: 217px;
+
+}
+
+.teaminfobox
+{
+	float: left;
+
+}
+
+.inforank{
+	width: 206px;
+	height: 100px;
+	margin-bottom: 4px;
+	background-color: #060411;
+}
+
+.inforankl, .inforankr
+{
+	width: 103px;
+	float: left;
+	text-align: center;
+
+}
+.inforankl h1 {
+	font-size: 60px;
+	line-height: 100px;
+	font-weight: bold;
+
+}
+.inforankr h1 {
+	padding-top: 20px;
+	color: #5900FF;
+	font-size: 27px;
+}
+
+
+.inforank2 {
+
+	text-align: center;
+	width:100px;
+	height:100px;
+	margin-right: 6px;
+	float: left;
+	background-image:url("/img/trophy.png");
+
+}
+
+.infoelo {
+	color: #E85A12;
+	text-align: center;
+	width:100px;
+	height:100px;
+	float: left;
+	background-image:url("/img/trophy.png");
+}
+
+.infoelo h1, .inforank2 h1 {
+	margin-top: 24px;
+	font-size: 29px;
+	font-weight: bold;	
+}
+
+.teampic
+{
+	float: right;
+	margin-right: 6px;
+	width: 261px;
+	height: 203px;
+}
+
+.huge {
+	font-size: 24px;
+	line-height: 50px;
+}
+
+.popoutbutton
+{
+	float: right;
+	width: 200px;
+	height: 40px;
+	background-image:url("/img/popl.png");
+}
+
+.popoutbutton:hover {
+	border-style: solid;
+	border-color: white;
+	border-width: 1px;
+}
+.popoutbutton h1
+{
+
+	padding-left: 60px;
+	padding-top: 9px;
+}
+
+.videobutton {
+	float: left;
+	width: 134px;
+	height: 48px;
+	border-style: solid;
+	border-color: #072338;
+	border-width: 1px;
+	margin-right: 20px;
+	margin-bottom: 7px;
+	background-color: #0C1115;
+}
+
+.videobutton:hover
+{
+	border-color: white;
+}
+
+.videobutton h1 {
+	text-align: center;
+	line-height: 48px;
+	font-size: 20px;
+}
+
+.videobutton a h1 {
+	text-decoration: none;
+}
+
+.unranked {
+	text-align: center;
+	color: #A4A4A4 ;
+	font-size: 30px;
+	line-height: 100px;
+}
+
+.spoilerbutton, .showbutton {
+	margin: auto;
+	background-color: #260069;
+	height: 28px;
+	width: 60px;
+	border: solid 1px #260069;
+	line-height: 28px;
+	font-weight: normal;
+}
+
+.spoilerbutton:hover, .allspoilers:hover, .showmore:hover, .showbutton:hover {
+	border-style: solid;
+	border-color: #E5E5E5;
+	border-width: 1px;
+}
+
+
+
+.allspoilers {
+	text-align: center;
+	text-decoration: none;
+	background-color: #260069;
+	height: 28px;
+	width: 160px;
+	margin-left: 410px;
+	border: solid 1px #260069;
+	line-height: 28px;
+	font-weight: normal;
+}
+
+.allspoilers a {
+	text-decoration: none;
+}
+
+.showmore a:hover {
+	color: #E5E5E5;
+}
+.showmore {
+	color: #E5E5E5;
+	text-align: center;
+	background-color: #00233F;
+	height: 28px;
+	width: 100%;
+	border: solid 1px #00233F;
+	line-height: 28px;
+	font-weight: normal;
+	margin-top: 5px;
+}

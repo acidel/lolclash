@@ -1,0 +1,53 @@
+include matchlist
+mixin eventmatchlist(eventResults)
+	script(src="/hidespoiler.js" type="text/javascript")
+	script(src="/timechange.js" type="text/javascript")
+	script(src="/eventsort.js" type="text/javascript")
+	div.showall
+		div.allspoilers
+			a(href="#")
+				="Show All Spoilers"
+	div#matchlist.contentlarge
+		if (eventResults[0].stage)
+			-var currentStage = eventResults[0].stage
+			div.contentlargeheader.smallmargin.nobg.headerborder
+				h1
+					=eventResults[0].stage.toUpperCase()
+		else
+			div.smallmargin
+		each section, i in eventResults
+			if (section.stage && section.stage != currentStage)
+				div.nobg(style="height: 10px;")
+				-currentStage = section.stage
+				div.contentlargeheader.smallmargin.nobg.headerborder
+					h1
+						=section.stage.toUpperCase()
+			div.matchfilter
+				a(href="#" data-sub=section.sub.replace(/[\. ,:'-]+/g, ""))
+					div.matchexpand.darkbox(data-sub=section.sub.replace(/[\. ,:'-]+/g, ""))
+							h1
+								if section.sub
+									div(style= "min-width: 140px; display: inline-block; padding-right: 15px;" )
+										span.switchplus
+											="+ "
+										span.gold
+											=section.sub.toUpperCase()
+									span.lb
+										=section.startDate.toDateString().slice(4,10)
+										if (section.startDate.getDate() !== section.endDate.getDate())
+											= " - "
+											=section.endDate.toDateString().slice(4,10)
+									span.grey.showhide(style="float: right; padding-right: 20px;")
+										="Click to Show"
+									span(style="float: right; padding-right: 90px;")
+										if (section.progress === "Completed")
+											span.green
+												=section.progress
+										else if (section.progress === "Upcoming")
+											span.grey
+												=section.progress
+										else if (section.progress === "In Progress")
+											span.gold
+												=section.progress
+			+matchlist(section.results, true)
+			div.spacerswitch(data-sub=section.sub.replace(/[\. ,:'-]+/g, "") style="margin-bottom: 2px;")

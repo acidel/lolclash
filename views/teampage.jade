@@ -1,0 +1,248 @@
+include header
+include footer
+extends layout
+block content
+	div#screencontainer
+		div#content
+			+header()
+			div#wrapper
+				div#leftcontainer
+					div#path
+						h1
+							a(href= '/')
+								="Home"
+							=" / "
+							a(href= '/teams/')
+								="Teams"
+							=" / "
+							a(href= '/teams/' + team.url)
+								=team.nameMed
+					div.contenthugeheader.headersplit
+						h1
+							=team.nameLong
+						img(src= '/img/flagsL/' + team.country + '.png' style="float: right; margin-right: 10px; margin-top: -6px;")
+					if team.aliases[0]
+						div.contentdarkheader.headerborder
+							h1.grey
+								="Formerly: "
+								each alias, i in team.aliases
+									if (i === 0)						
+										=alias.name.replace("ex-", "")
+									else
+										=', ' + alias.name.replace("ex-", "")
+					div#teaminfo.smallmargin
+						if team.logos[4] !== 'Unknown.png'
+							div.teamlogo(style='background: url(/img/logo/4/' + team.logos[4] + ') no-repeat 50% 50%')
+						else
+							div.teamlogo
+						div.teaminfobox
+							div.inforank
+								if team.ranking
+									div.inforankl
+										h1
+											=team.ranking
+									div.inforankr
+										h1
+											="in the world"
+								else
+									h1.unranked
+										="Unranked"
+							if team.regionRanking
+								div.inforank2(style='background: url(/img/rbu/'+team.region+'.png) no-repeat 50% 50%')
+									h1
+										=team.regionRanking
+									="in " +  team.region
+							div.infoelo
+								h1
+									=Math.round(team.elo)
+								="Current Rating"
+						if (team.logos[5] && team.logos[5] !== 'unknown.png')
+							div.teampic(style='background: url(/img/teampic.png) no-repeat 50% 50%')
+					div#teamgraph.contentlarge
+						div.contentlargeheader.smallmargin.headerborder
+							h1
+								="RATING HISTORY"
+					div#chart
+						svg(style="height:350px")
+					script(src='http://d3js.org/d3.v3.min.js' type='text/javascript' charset='utf8')
+					script(src='/nv.d3.min.js' type='text/javascript' charset='utf8')
+					script(src='/line.js' type='text/javascript' charset='utf8')
+					script.
+						function getData() {
+							graphdata = [];
+							var graphy = "#{graphy}".split(',').map(Number);
+							var graphx = "#{graphx}".split(',');
+							for (var i = 0; i < graphx.length; i++)
+								{
+									graphdata.push({x: new Date(graphx[i]), y: graphy[i]});
+								}
+
+								return [
+									{
+										values : graphdata,
+										key : "Rating",
+										color : "#00A0EE",
+										area : false
+									}
+								];
+							}
+					script(src='/teamfilter.js' type='text/javascript' charset='utf8')
+					script(src="/timechange.js" type="text/javascript")
+					div#teammatches.contentlarge
+						div.contentlargeheader.headerborder
+							h1
+								="MATCHES"
+						table
+							tr.gold
+								th="DATE"
+								th="EVENT"
+								th
+								th="OPPOSING TEAM"
+								th="RESULT"
+								th=" +/-"
+								th.center="SCORE"
+
+							each result, i in results
+								tr
+									td 
+										span.white.month
+											=result.date.toDateString().slice(4,7)
+										=" "
+										span.lb.date
+											=result.date.getDate()
+										=" "
+										span.grey.date
+											=result.date.getFullYear()
+										if (result.date > new Date())
+											=" "
+											span.white
+												span.hours
+													if (result.date.getHours() === 0)
+														="12"
+													else if result.date.getHours() <= 12
+														=result.date.getHours()
+													else
+														=result.date.getHours()-12
+
+												if result.date.getMinutes() !== 0
+													=':' + ('0' + result.date.getMinutes()).slice(-2) 
+												span.ampm
+													if result.date.getHours() < 12
+														=" AM"
+													else
+														=" PM"
+									td(style="width:180px")
+										a.dblue(href= '/vods/' + result.eventUrl) 
+											=result.eventName.replace(/\b\d{4}\b/g,"").slice(0,20)
+								
+									td(style="width:30px")
+										a(href= '/teams/' + result.url[1])
+											if (result.logos.team2[1] !== "Unknown.png")
+												img(src= '/img/logo/1/'+ result.logos.team2[1])
+									if (result.teams[1] === "?")
+										td.grey()
+											="TBD"
+									else
+										td
+											if (!result.fake || !result.fake[1])
+												a.lb(href= '/teams/' + result.url[1]) 
+													=result.teamsMed[1] 
+													span.grey
+														=' (' +Math.round(result.eloBefore[1]) + ')'
+											else
+												span.grey
+													=result.teamsMed[1]
+									if (result.result[0] + result.result[1] === 0)
+										td.grey(colspan=3 style="text-align: center")
+											="Upcoming"
+									else
+										if (result.result[1] < result.result[0]) 
+											td.green(style="width: 30px")= 'WIN '
+											td(style="width: 30px")
+												if (!result.unranked)
+													if (result.eloAfter[0] - result.eloBefore[0] >= 0)
+														span.green
+															='+'
+															=Math.round(result.eloAfter[0] - result.eloBefore[0])
+													else
+														span.red
+															=Math.round(result.eloAfter[0] - result.eloBefore[0])
+										else if (result.result[1] > result.result[0])
+											td.red(style="width: 30px")= 'LOSS '
+											td(style="width: 30px")
+												if (!result.unranked)
+													if (result.eloAfter[0] - result.eloBefore[0] >= 0)
+														span.green
+															='+'
+															=Math.round(result.eloAfter[0] - result.eloBefore[0])
+													else
+														span.red
+															=Math.round(result.eloAfter[0] - result.eloBefore[0])
+															
+										else 
+											td.gold(style="width: 30px")= 'TIE '
+											td(style="width: 30px")
+												if (!result.unranked)
+													if (result.eloAfter[0] - result.eloBefore[0] >= 0)
+															span.green
+																='+'
+																=Math.round(result.eloAfter[0] - result.eloBefore[0])
+														else
+															span.red
+																=Math.round(result.eloAfter[0] - result.eloBefore[0])
+										td.center
+											=result.result[0] + '-' + result.result[1]
+						if (results.length > 15)
+							a(href="#")
+								div.showmore.center
+									="Show All Results"
+					
+					div#teambio.contentlarge
+						div.contentlargeheader.headerborder
+							h1
+								="BIO"
+						div#teambiotext
+							p
+								="I didn't watch the Curse game, so I'll ask this. Did CRS pause the game immediately after the bug happened and point it out to a ref? And was the bug reproducible? Because both of those are requirements to qualify for a rematch. SK did both these things (pause to alert an official an show it was reproducible), and were actually supposed to be offered a restart as per the rules. They were never offered one, though, so Riot made the executive decision to give it to them after the fact. I'll admit it's a little sketchy, but it's okay from the rules' standpoint."
+					div#teamlineup.contentlarge
+						div.contentlargeheader.headerborder
+							h1
+								="CURRENT LINEUP"
+						table
+							tr
+								th='ALIAS'
+								th='NAME'
+								th='COUNTRY'
+								th='POSITION'
+								th='JOINED'
+								tr
+									td
+										="Bjergsy Baby"
+									td
+										="Personerino X"
+									td
+										="Denmark"
+									td
+										="Mid"
+									td
+										="Jan 1 1969"
+								tr
+									td
+										="Doublelift"
+									td
+										="Mr. Pang"
+									td
+										="USA"
+									td
+										="Marksman(lol)"
+									td
+										="March 4 1969"
+				div#rightcontainer
+						div#upcomingmatches
+							div.contentlargeheader
+								h1 MODULE 1
+						div#upcomingmatches
+							div.contentlargeheader
+								h1 MODULE 2
+						div#ad1(style='background-image:url("/img/v1.png")')
+	+footer()

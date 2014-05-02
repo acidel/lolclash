@@ -1,0 +1,80 @@
+include header
+include footer
+include matchlist
+include eventmatchlist
+extends layout
+block content
+	div#screencontainer
+		div#content
+			+header()
+			div#wrapper
+				div#leftcontainer
+					div#path
+						h1
+							a(href= '/')
+								="Home"
+							=" / "
+							a(href= '/vods/')
+								="Event VoDs"
+							=" / "
+							a(href= '/vods/' + tourneyData.url)
+								=tourneyData.name
+							=" / "
+							a(href= '/vods/' + tourneyData.url + '/' +vodData.vodId+ '/' + vodPath)
+								=vodPath.replace(/-/g, " ")
+
+					div.contenthugeheader.headersplit.smallmargin
+						h1
+							=tourneyData.name
+					div.darkbox.smallmargin
+						h1.grey.huge
+							=vodData.eventSub
+							=": "
+							span.white
+								if (vodData.logos.team1[3] !== "Unknown.png")
+									img(src= '/img/logo/3/'+ vodData.logos.team1[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
+								=vodData.teamsMed[0]
+								span.yellow
+									= " (" + Math.round(vodData.eloBefore[0]) + ")"
+								span.grey
+									=" vs. "
+								=vodData.teamsMed[1]
+								span.yellow
+									= " (" + Math.round(vodData.eloBefore[1]) + ")"
+								if (vodData.logos.team2[3] !== "Unknown.png")
+									img(src= '/img/logo/3/'+ vodData.logos.team2[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
+					each vod, i in vodData.vods
+						if vod.path === vodPath
+							if (vod.url.indexOf("youtube") !== -1)
+								iframe(width ="760" height="428" src=vod.url.replace("watch?v=", "embed/") frameborder="0" allowfullscreen)
+								-var popupUrl = vod.url.replace("watch?v=", "watch_popup?v=")
+								a(href="#" onclick="javascript:void window.open('#{popupUrl}','1397723891825','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=0,resizable=1,left=0,top=0');return false;")
+									.popoutbutton
+										h1
+											="POPUP PLAYER"
+					div.contentlargeheader.headerborder.smallmargin(style="margin-top: 15px;")
+						h1
+							="OPTIONS"
+					if vodData.vods.length > 1
+						-var rows = Math.ceil(vodData.vods.length/5)*40
+						div#gameslist.contentlarge(style="height: #{rows}px")
+							each vod, i in vodData.vods
+								.videobutton
+									if vod.path === vodPath
+										h1.grey
+											=vod.name + " "
+									else
+										a(href=vod.path)
+											h1.white
+												=vod.name + " "
+					+eventmatchlist(eventResults)
+				div#rightcontainer
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 1
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 2
+					div#ad1(style='background-image:url("/img/v1.png")')
+	+footer()
+

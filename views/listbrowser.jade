@@ -1,0 +1,41 @@
+mixin listbrowser(path, count, perpage, page)
+	-var total = Math.ceil(count/perpage)
+	div#listbrowser
+		ul
+			if page > 1
+				a(href=path+'page/'+ (page-1))
+					.listbrowserbutton
+						li
+							="PREVIOUS"
+
+			if page > 2
+				a(href=path+'page/'+ 1)
+					li
+						='1'
+			if page > 3
+				li
+					='...'
+			if page > 1
+				a(href=path+'page/'+ (page-1))
+					li
+						=page-1
+			.listbrowserbutton
+				li
+					=page
+			if page <= total-1
+				a(href=path+'page/'+ (page- -1))
+					li
+						=page- -1
+			if page <= total-2
+				a(href=path+'page/'+ (page- -2))
+					li
+						=page- -2
+			if page <= total-3
+				a(href=path+'page/'+ (page- -3))
+					li
+						=page- -3
+			if page < total
+				a(href=path+'page/'+ (page- -1))
+					.listbrowserbutton
+						li
+							="NEXT"

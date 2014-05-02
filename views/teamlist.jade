@@ -1,0 +1,40 @@
+mixin teamlist(teams, page)
+	div#teamlist
+		table
+			tr
+				th.center(colspan=2)='RANK'
+				th
+				th
+				th.center='RATING'
+				th.center='COUNTRY'
+				th.center='WIN/LOSS'
+				th
+			each team, i in teams
+				tr
+					td.center.grey(style="width:30px;")=i+(20*(page-1))+1	
+					td(style="width:35px;")
+						if team.delta > 2
+							span.green
+								="+" + team.delta
+						else if team.delta < -2
+							span.red
+								=team.delta
+						else
+
+					
+					td(style="width:30px;")
+						if (team.logos[1] !== "Unknown.png")
+							a(href= '/teams/' + team.url)
+								img(src= '/img/logo/1/'+ team.logos[1] height=22 width=22)
+					td.teamname(style="width:500px;")
+						a.lb(href= '/teams/' + team.url) #{team.nameMed}
+					td.center.yellow(style="width: 90px;")= Math.round(team.elo)
+					td.center(style="width:90px")
+						img(src= '/img/flags/' + team.country + '.png')
+					td.grey.center(style="width:90px")
+						span.green
+							=team.wins
+						=' / '
+						span.red
+							=team.losses
+					td(style="width:140px")

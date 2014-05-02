@@ -1,0 +1,41 @@
+include header
+include footer
+include teamlist
+include listbrowser
+extends layout
+block content
+    div#screencontainer
+        div#content
+            +header()
+            div#wrapper
+                    div#leftcontainer
+                        div#path
+                            h1
+                                a(href= '/')
+                                    ="Home"
+                                =" / "
+                                a(href= '/teams/')
+                                    ="Teams"
+                        div.contentdarkheader
+                            h1
+                                ="RANKINGS"
+                        +teamlist(teams, page)
+                        +listbrowser('/teams/', count, 20, page)
+                        div.smallmargin
+                        div#teambiotext.contentlarge
+                            p
+                                ="I didn't watch the Curse game, so I'll ask this. Did CRS pause the game immediately after the bug happened and point it out to a ref? And was the bug reproducible? Because both of those are requirements to qualify for a rematch. SK did both these things (pause to alert an official an show it was reproducible), and were actually supposed to be offered a restart as per the rules. They were never offered one, though, so Riot made the executive decision to give it to them after the fact. I'll admit it's a little sketchy, but it's okay from the rules' standpoint."
+                        +teamlist(naTeams, 1)
+                        +teamlist(euTeams, 1)
+                        +teamlist(chinaTeams, 1)
+                        +teamlist(koreaTeams, 1)
+                        +teamlist(seaTeams, 1)
+                    div#rightcontainer
+                        div#upcomingmatches
+                            div.contentlargeheader
+                                h1 MODULE 1
+                        div#upcomingmatches
+                            div.contentlargeheader
+                                h1 MODULE 2
+                        div#ad1(style='background-image:url("/img/v1.png")')
+    +footer()

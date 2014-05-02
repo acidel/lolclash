@@ -1,0 +1,98 @@
+include header
+include footer
+include matchlist
+extends layout
+block content
+	script(src="/hidespoiler.js" type="text/javascript")
+	script(src="/timechange.js" type="text/javascript")
+	div#screencontainer
+		div#content
+			+header()
+			div#wrapper
+				div#leftcontainer
+					div#path
+						h1
+							a(href= '/')
+								="Home"
+							=" / "
+							a(href= '/results/')
+								="Results"
+					div.contenthugeheader.contentlarge.headersplit
+						h1
+							="RESULTS & VODS"
+					div.filtertable.contentlarge
+						ul
+							li(style="padding-right: 15px")
+								="FILTER:"
+							a(href="#" data-hotness="1")
+								li(style="padding-right: 15px")
+									img.switch(src='/img/filter/d_hot.png' data-hotness="1")
+							a(href="#" data-region="all")
+								li
+									img.switch(src='/img/filter/h_all.png' data-region="all")
+							a(href="#" data-region="N")
+								li
+									img.switch(src='/img/filter/d_n.png' data-region="N")
+							a(href="#" data-region="E")
+								li
+									img.switch(src='/img/filter/d_e.png' data-region="E")
+							a(href="#" data-region="K")
+								li
+									img.switch(src='/img/filter/d_k.png' data-region="K")
+							a(href="#" data-region="C")
+								li
+									img.switch(src='/img/filter/d_c.png' data-region="C")
+							a(href="#" data-region="A")
+								li
+									img.switch(src='/img/filter/d_a.png' data-region="A")
+					script(src="../matchsort.js" type="text/javascript")
+					div(style="height:40px")
+						div.grey(style="float:left; line-height: 40px")="Times are in your local Timezone"
+						div.showall
+							a(href="#")
+								div.allspoilers.smallmargin
+									="Show All Spoilers"
+					div#matchlist.contentlarge
+						if (resultsToday[0])
+							div.darkbox
+								h1
+									="TODAY"
+							+matchlist(resultsToday)
+						if (resultsYesterday[0])
+							if (resultsToday[0])
+								div.blackspace
+							div.darkbox
+								h1
+									="YESTERDAY"
+							+matchlist(resultsYesterday)
+						if (resultsThisWeek[0])
+							if (resultsToday[0] || resultsYesterday[0])
+								div.blackspace
+							div.darkbox
+								h1
+									="THIS WEEK"
+							+matchlist(resultsThisWeek)
+						if (resultsLastWeek[0])
+							if (resultsToday[0] || resultsYesterday[0] || resultsThisWeek[0])
+								div.blackspace
+							div.darkbox
+								h1
+									="LAST WEEK"
+							+matchlist(resultsLastWeek)
+						if (resultsMonth[0])
+							if (resultsToday[0] || resultsYesterday[0] || resultsThisWeek[0] || resultsLastWeek[0])
+								div.blackspace
+							div.darkbox
+								h1
+									="MONTHLY"
+							+matchlist(resultsMonth)
+				div#rightcontainer
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 1
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 2
+					div#ad1(style='background-image:url("/img/v1.png")')
+	+footer()
+

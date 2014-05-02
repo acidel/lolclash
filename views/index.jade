@@ -1,0 +1,77 @@
+include header
+include footer
+include teamlist
+include matchlist
+
+extends layout
+block content
+	script(src="/hidespoiler.js" type="text/javascript")
+	script(src="/timechange.js" type="text/javascript")
+	div#screencontainer
+		div#content
+			+header()
+			div#wrapper
+				div#leftcontainer
+					div#newsheader.contentlarge
+						div#feature(style='background-image:url("/img/ft1.png")')
+						div#featureright(style='background-image:url("/img/ftr1.png")')
+						div#featureright(style='background-image:url("/img/ftr2.png")')
+					div.contentlargeheader.headerborder.smallmargin
+						h1 CURRENT RANKINGS
+					div.fronttable
+						+teamlist(teams,1)
+						h1.center
+							a.center.lb(href='/teams')
+								="Click for full rankings..."
+					div.contentlargeheader.headerborder.smallmargin
+						h1 TOURNAMENTS
+					div#tourneylist.smallmargin
+						ul
+							each tourney, i in tourneys
+								-var boxclass
+								if i === 0
+									-boxclass = "tourneybox1"
+								else if i === 1
+									-boxclass = "tourneybox2"
+								else if i === 2
+									-boxclass = "tourneybox3"
+								else if i === 3
+									-boxclass = "tourneybox3"
+								else if i === 4
+									-boxclass = "tourneybox1"
+								else if i === 5
+									-boxclass = "tourneybox2"
+
+								a(href='/vods/' + tourney.url)
+									li(class=boxclass)
+										div.tbox1
+											h1
+												=tourney.name.slice(0,21)
+										div.tbox2
+											img(src= '/img/eventlogo.png' height=75 width=75)
+										div.tbox3
+											h1
+												="Watch VoDs"
+						div.clearboth
+					h1.center
+							a.center.lb(href='/results')
+								="Click for all event VoDs..."
+					div.contentlargeheader.headerborder
+						h1 RECENT MATCHES
+					div#matchlist.smallmargin.headerborder
+						+matchlist(results)
+					h1.center
+							a.center.lb(href='/teams')
+								="Click for all recent results..."
+				div#rightcontainer
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 1
+					div#upcomingmatches
+						div.contentlargeheader
+							h1 MODULE 2
+					div#ad1(style='background-image:url("/img/v1.png")')
+	+footer()
+
+
+
