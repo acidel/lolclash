@@ -242,7 +242,7 @@ exports.migrate = function () {
     }
 
     fs.readFile('migrations/alias.csv', 'utf8', function (err, data) {
-        data.split('\n').forEach(function (line) {
+        data.split('\r\n').forEach(function (line) {
             var arr = line.split(',');
             arr.forEach(function (alias, index) {
                 if (index === 0) {
