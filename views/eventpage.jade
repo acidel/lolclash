@@ -68,9 +68,9 @@ block content
 										li
 											div(style="float: left; padding-right: 5px" )
 												if (team.logos[3] !== "Unknown.png")
-													img(src= '/img/logo/3/' + team.logos[3] height= "40" width = "40")
+													div.logo40(style='background: url(/img/logo/3/' + team.logos[3] + ') no-repeat 50% 50%')
 												else
-													div(style= "height: 40px; width = 40px;")
+													div.logo40
 											div(style="text-align: right")
 												=team.name
 												=team.fake

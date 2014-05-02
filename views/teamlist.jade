@@ -19,7 +19,7 @@ mixin teamlist(teams, page)
 						else if team.delta < -2
 							span.red
 								=team.delta
-					td(style="width:30px;")
+					td.center(style="width:40px;")
 						if (team.logos[1] !== "Unknown.png")
 							a(href= '/teams/' + team.url)
 								img(src= '/img/logo/1/'+ team.logos[1])
