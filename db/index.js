@@ -60,7 +60,7 @@ exports.migrate = function () {
 
     function updateTeams () {
         fs.readFile('migrations/team.csv', 'utf8', function (err, data) {
-            var regionDataArray = data.split('\r\n'),
+            var regionDataArray = data.split('\n'),
                 i = regionDataArray.length,
                 j = 0;
 
@@ -128,7 +128,7 @@ exports.migrate = function () {
 
     function updateTourneys () {
         fs.readFile('migrations/tourney.csv', 'utf8', function (err, data) {
-            var regionDataArray = data.split('\r\n'),
+            var regionDataArray = data.split('\n'),
                 i = regionDataArray.length,
                 j = 0;
 
@@ -259,7 +259,7 @@ exports.migrate = function () {
     }
 
     fs.readFile('migrations/alias.csv', 'utf8', function (err, data) {
-        data.split('\r\n').forEach(function (line) {
+        data.split('\n').forEach(function (line) {
             var arr = line.split(',');
             arr.forEach(function (alias, index) {
                 if (index === 0) {
@@ -301,7 +301,7 @@ exports.migrate = function () {
                 teamArr.forEach(function (t) {
                     teams[t.name] = aliases[t.name] || [];
                 });
-                data.split('\r\n').forEach(function (line) {
+                data.split('\n').forEach(function (line) {
                         var arr = line.split(','),
                             matchData = {};
 
