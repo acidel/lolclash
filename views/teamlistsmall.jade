@@ -19,6 +19,7 @@ mixin teamlistsmall(teams, region)
 		-headertext = "SEA"
 	div.regionlist
 		div.regionheader(style=boxstyle)
+			img(src='/img/rsmall/'+region+'.png')
 			h1
 				=headertext
 		div#teamlistsmall
@@ -56,9 +57,9 @@ mixin teamlistsmall(teams, region)
 					else
 						-boxcolor = "#9B9B9B"
 					tr
-						td.center.grey(style="width:20px;")=i+1	
 						td(style="width:40px;")
 							div.colorbox(style="background-color:" + boxcolor)
+						td.center.grey(style="width:20px;")=i+1	
 						td(style="width:40px;")
 							if (team.logos[1] !== "Unknown.png")
 								a(href= '/teams/' + team.url)
