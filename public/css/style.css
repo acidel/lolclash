@@ -47,13 +47,13 @@ ul
 .contentdarkheader {
 	background-color: #002B4B;
 	height: 30px;
-	color: white;
+	color: #E5E5E5;
 
 }
 
 .contentlargeheader {
 	height: 30px;
-	color: white;
+	color: #E5E5E5;
 
 }
 .headersplit
@@ -61,30 +61,102 @@ ul
 	height: 30px;
 		background-color: #0073C6;
 
+
 }
 
 .headersplit h1{
 	display: inline-block;
 	padding-right: 31px;
-	background-color: #00233F;
+	background-color: rgba(5, 26, 40, 0.8);
 }
 
 .contenthugeheader {
-	background-color: #002B4B;
 	height: 52px;
-	color: white;
+	color: #E5E5E5;
+
+}
+
+.hbg1 {
+background-image:url("/img/h1a.png");
+}
+
+.hbg2 {
+background-image:url("/img/h2a.png");
+}
+
+.hbg3 {
+background-image:url("/img/h3a.png");
+}
+
+.hbg4 {
+	background-image:url("/img/h4a.png");
+}
+
+.dbg1 {
+background-image:url("/img/h1.png");
+}
+
+.dbg2 {
+background-image:url("/img/h2.png");
+}
+
+.dbg3 {
+background-image:url("/img/h3.png");
+}
+
+.dbg4 {
+	background-image:url("/img/h4.png");
+}
+
+.contenthugeheader2 {
+	
+	height: 52px;
+	color: #E5E5E5;
+
+}
+.contenthugeheader3 {
+	
+	height: 52px;
+	color: #E5E5E5;
+
+}
+.contenthugeheader4 {
+	
+	height: 52px;
+	color: #E5E5E5;
 
 }
 
 .logo40 {
 	width:40px;
 	height:40px;
+	margin: auto;
+}
+
+.logo30 {
+	width:30px;
+	height:30px;
+	margin: auto;
 }
 
 .logo22 {
 	width: 40px;
 	height: 22px;
+	margin: auto;
 }
+
+.logo75 {
+	width: 100%;
+	height: 75px;
+	margin: auto;
+}
+
+.logo150 {
+	width: 150px;
+	height: 150px;
+	margin: auto;
+}
+
 
 .contentdarkheader h1 {
 
@@ -184,7 +256,7 @@ body > #screencontainer { height: auto; min-height: 100%; }
 	{
 		list-style-type: none;
 		font-size: 20px;
-		padding-right: 400px;
+		padding-right: 460px;
 		padding-left: 6px;
 		text-align: center;
 		margin: 0 0 ;
@@ -229,6 +301,12 @@ body > #screencontainer { height: auto; min-height: 100%; }
 	margin-right:50px;
 
 }
+.colorbox
+{
+	opacity:0.75;
+	height: 20px;
+	width: 36px;
+}
 #fullcontainer
 {
 	margin-top: 21px;
@@ -242,6 +320,34 @@ body > #screencontainer { height: auto; min-height: 100%; }
 	margin-bottom: 21px;
 }
 
+.featureheader {
+	position: absolute;
+	bottom: 0px;
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-left: 12px;
+}
+
+.featureheader h1 {
+	font-weight: 700;
+	font-size: 30px;
+	padding: 0;
+	margin: 0;
+}
+
+.featureheader h3 {
+	font-weight: 500;
+	font-size: 25px;
+	padding: 0;
+	margin: 0;
+}
+
+.featureheader h2 {
+	color: #0090FF;
+	font-size: 20px;
+	padding: 0;
+	margin: 0;
+}
 .border
 {
 	border: 1px solid;
@@ -296,15 +402,14 @@ body > #screencontainer { height: auto; min-height: 100%; }
 
 #newsheader
 {
+	position: relative;
 	width: 100%;
 	height: 290px;
 	
 }
-#upcomingmatches
+#popularpages
 {
-	background-color: #151515;
 	margin-bottom: 21px;
-	height: 150px;
 }
 
 .contentlarge table
@@ -413,14 +518,19 @@ table
 	color: #FDC100;
 }
 
-#teamlist tr:nth-child(even), #teamlineup tr:nth-child(even),  #teammatches tr:nth-child(even) td{
+#teamlist tr:nth-child(even), #teamlineup tr:nth-child(even),  #teammatches tr:nth-child(even), #teamlistsmall tr:nth-child(even){
 	background-color: #131313;
 }
 
 #teamlist table {
 	border-style: solid;
-	border-color: #002B4B;
+	border-color: #262525;
 	border-width: 2px;
+}
+#teamlistsmall table {
+	border-style: solid;
+	border-color: #262525;
+	border-width: 1px;
 }
 .center
 {
@@ -435,24 +545,31 @@ table
 {
 	padding: 0;
 	padding-bottom: 5px;
-	height: 600px;
+	height: 594px;
 }
 #feature
 {
+	border: solid 1px #151515;
 	float: left;
 	height:300px;
 	width:520px;
 	background-repeat: no-repeat;
 }
-
+th {
+	background-image :url("/img/h3.png");
+}
 #featureright
 {
+	border: solid 1px #151515;
+	position: relative;
 	float: right;
 	height:145px;
 	width:230px;
 	background-repeat: no-repeat;
-	padding-top:10px;
+	margin-bottom:8px;
 }
+
+
 
 #spotlightmatches
 {
@@ -514,6 +631,7 @@ table
 	border-width: 1px;
 	height:572px;
 	background-repeat: no-repeat;
+	margin-bottom: 21px;
 }
 
 .bold
@@ -521,7 +639,7 @@ table
 	font-weight: 700;
 }
 
-#matchlist table
+#matchlist table, #matchlistsmall table
 {
 	border-collapse: separate;
 	border-spacing: 0px 11px;
@@ -530,7 +648,17 @@ table
 	margin: 0;
 
 }
-#matchlist tr
+
+#matchlistsmall table {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0px 8px;
+	background: black;
+	padding: 0;
+	margin: 0;
+}
+
+#matchlist tr, #matchlistsmall tr
 {
 	outline: 1px solid #262525;
 	padding: 0;
@@ -545,30 +673,33 @@ table
 	margin: 0;
 	height:47px;
 }
-#matchlist th
+#matchlist th, #matchlistsmall th
 {
 	background-color: #0B0B0B;
 }
-#matchlist
+#matchlist, #matchlistsmall
 {
 	background: black;
 }
-#matchlist td
+#matchlist td, #matchlistsmall td
 {
 	background-color: #131313;
 	text-align: center;
 	padding: 0;
 	margin: 0;
 	height:47px;
+}
 
-
+#matchlistsmall td 
+{
+	height: 33px;
 }
 
 #listbrowser
 {
 	padding: 0;
 	margin: 0;
-	height: 30px;
+	height: 32px;
 	background: #131313;
 }
 
@@ -611,7 +742,7 @@ table
 {
 	background-color: #002B4B;
 	display: block;
-	color: white;
+	color: #E5E5E5;
 	color: #018FFD;
 }
 
@@ -683,6 +814,24 @@ table
 	border-bottom: solid 3px #002B4B;
 }
 
+.headerborderside
+{
+
+	border-bottom: solid 3px #002B4B;
+	border-left: solid 3px #002B4B;
+}
+
+.popular {
+	border: solid 1px #151515;
+	height: 70px;
+	width: 160px;
+	margin-bottom: 8px;
+}
+
+.popular:hover, #feature:hover, #featureright:hover {
+	border: solid 1px #E5E5E5;
+}
+
 .blackspace 
 {
 	margin-top: 5px;
@@ -696,6 +845,18 @@ table
 	background-color: #0C1115;
 	border: solid 1px #072338;
 }
+
+.regionheader
+{
+	margin-bottom: -1px;
+	width: 350px;
+	padding-left: 14px;
+	min-height: 35px;
+	line-height: 35px;
+	background-color: #0C1115;
+	border: solid 1px #072338;
+}
+
 
 .darkbox a
 {
@@ -712,6 +873,11 @@ table
 	border: solid 1px #E5E5E5;;
 }
 
+.regionlist {
+	float: left;
+	margin-right: 13px;
+	margin-bottom: 28px;
+}
 #teamgrid ul li {
 	height: 40px;
 	width: 115px;
@@ -750,6 +916,7 @@ table
 	border-bottom: solid 1px #072338;
 	text-align: center;
 	padding: 15px;
+	min-height: 120px;
 }
 
 .eventlistright
@@ -762,7 +929,6 @@ table
 
 .tourneycontainer
 {
-	min-height: 220px; 
 	width: 100%;
 }
 
@@ -786,9 +952,7 @@ table
 	text-align: center;
 	padding: 8px;
 	background-color: #260069;
-	height: 28px;
 	border: solid 1px #260069;
-	line-height: 28px;
 	font-weight: normal;
 	margin-top: 5px;
 }
@@ -812,7 +976,7 @@ table
 
 	border: solid 1px #E5E5E5;
 	text-decoration: underline;
-	color: white;
+	color: #E5E5E5;
 
 }
 
@@ -827,6 +991,7 @@ table
 }
 
 #tourneylist ul li {
+		border: solid 1px #151515;
 	float: left;
 	width: 220px;
 	height: 151px;
@@ -975,7 +1140,7 @@ line-height: 40px;
 
 .popoutbutton:hover {
 	border-style: solid;
-	border-color: white;
+	border-color: #E5E5E5;
 	border-width: 1px;
 }
 .popoutbutton h1
@@ -999,7 +1164,7 @@ line-height: 40px;
 
 .videobutton:hover
 {
-	border-color: white;
+	border-color: #E5E5E5;
 }
 
 .videobutton h1 {
@@ -1019,7 +1184,7 @@ line-height: 40px;
 	line-height: 100px;
 }
 
-.spoilerbutton, .showbutton {
+.spoilerbutton, .showbutton, .spoilerbuttonsmall {
 	margin: auto;
 	background-color: #260069;
 	height: 28px;
@@ -1029,7 +1194,13 @@ line-height: 40px;
 	font-weight: normal;
 }
 
-.spoilerbutton:hover, .allspoilers:hover, .showmore:hover, .showbutton:hover {
+.spoilerbuttonsmall {
+	height: 20px;
+	line-height: 20px;
+	width: 45px;
+}
+
+.spoilerbutton:hover, .allspoilers:hover, .showmore:hover, .showbutton:hover, .spoilerbuttonsmall:hover {
 	border-style: solid;
 	border-color: #E5E5E5;
 	border-width: 1px;

@@ -1,0 +1,110 @@
+mixin smallmatchlist(results, noEvent)
+	table#matchtable
+		tbody
+			each result, i in results
+				tr(
+					data-region=result.region[0] 
+					data-hotness=result.hotness 
+					data-sub=result.eventSub.replace(/[\. ,:'-]+/g, "")				
+					)
+					td.datetime(style="width: 65px; font-size: 13px;")
+						span.white.month=result.date.toDateString().slice(4,7)
+						=" "
+						span.lb.date(style="font-size:14px")=result.date.getDate()
+						-today = new Date()
+						-today.setHours(0,0,0,0)
+						if (result.date >= today)
+							<br>
+							span.grey(style="font-size: 14px")
+								span.hours
+									if (result.date.getHours() === 0)
+										="12"
+									else if result.date.getHours() <= 12
+										=result.date.getHours()
+									else
+										=result.date.getHours()-12
+
+								if result.date.getMinutes() !== 0
+									=':' + ('0' + result.date.getMinutes()).slice(-2) 
+								span.ampm
+									if result.date.getHours() < 12
+										=" AM"
+									else
+										=" PM"
+					td(style="width: 140px; font-size: 13px;" )
+							if (!noEvent)
+								a.grey(href= '/vods/' + result.eventUrl)
+									span.gold 
+										=result.eventName.replace(result.date.getFullYear(),"").toUpperCase()
+								<br>
+							if (result.eventSub && result.eventName.replace(result.date.getFullYear(),"").length < 20)
+									span.grey(style="font-size: 12px;")
+										=result.eventSub.toUpperCase()
+												if (result.hotness === 1)
+					td.center(style="width: 20px;")
+						if (result.hotness === 1)	
+							img(src= '/img/fires.png')
+						td(style="width: 130px; font-size: 15px;  text-align: right; font-weight: 500; padding-right: 10px; line-height: 16px;/")
+							if (result.teams[0] === "?")
+								span.grey
+									="TBD"
+							else if (result.fake[0])
+								=result.teamsMed[0].toUpperCase()
+							else
+								a(href= '/teams/' + result.url[0])
+									if result.teamsMed[0].length < 13
+										=result.teamsMed[0].toUpperCase().slice(0,12)
+									else
+										=result.teamsShort[0].toUpperCase().slice(0,12)
+									<br>
+									span(style=("font-size: 11px; font-weight: 500;"))
+										span.gold=Math.round(result.eloBefore[0]) + ' '
+										span.delta
+											if ((Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])) !== 0)
+												if (result.eloAfter[0] >= result.eloBefore[0])
+													span.green='+'+(Math.round(result.eloAfter[0]- result.eloBefore[0]))
+												else
+													span.red=Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])
+					td(style="width: 35px; padding-top: 3px")
+						a(href= '/teams/' + result.url[0])
+							if (result.logos.team1[3] !== "Unknown.png")
+								div.logo30(style='background: url(/img/logo/2/' + result.logos.team1[2] + ') no-repeat 50% 50%')
+					td.grey.center(style="font-size: 13px; font-weight: bold; width: 70px;")
+						if (result.result[0] === 0 && result.result[1] === 0)
+							span(style="font-size: 14px;")
+								=" vs. "
+						else
+							div.scoreswitch(data-result1 = result.result[0] data-result2 = result.result[1])
+								a(href="#")
+									div.spoilerbuttonsmall
+										="Show"
+					td.center(style="width: 35px; padding-top: 3px")
+						a(href= '/teams/' + result.url[1])
+							if (result.logos.team2[3] !== "Unknown.png")
+								div.logo30(style='background: url(/img/logo/2/' + result.logos.team2[2] + ') no-repeat 50% 50%')
+					td(style="width: 130px; font-size: 15px;  text-align: left; font-weight: 500; padding-left: 10px; line-height: 16px;")
+						if (result.teams[1] === "?")
+								span.grey
+									="TBD"
+						else if (result.fake[1])
+							=result.teamsMed[1].toUpperCase()
+						else
+							a(href= '/teams/' + result.url[1]) 
+								if result.teamsMed[1].length < 13
+									=result.teamsMed[1].toUpperCase().slice(0,12)
+								else
+									=result.teamsShort[1].toUpperCase().slice(0,12)
+								<br>
+								span(style=("font-size: 11px; font-weight: 500"))
+									span.gold=Math.round(result.eloBefore[1]) + ' '
+									span.delta
+										if ((Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])) !== 0)
+											if (result.eloAfter[1] >= result.eloBefore[1])
+												span.green='+'+(Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1]))
+											else
+												span.red=Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1])
+					td(style="padding-right: 20px; width: 30px")
+						if result.vods[0]
+							a(href= '/vods/' + result.eventUrl + '/'+ result.vodId + '/' + result.vods[0].path)
+								.showbutton
+									="Watch!"

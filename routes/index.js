@@ -14,8 +14,6 @@ exports.index = function(db) {
             }
         }
 
-
-
         db.tourney.findtourneyspage(0,6,function (err, tourneys){
             tourneysData = tourneys;
             doneTourneys = true;
@@ -35,12 +33,21 @@ exports.index = function(db) {
     };
 };
 
-exports.calendar = function(db) {
-return function (req, res) {
+exports.buildcalendar = function(db) {
+    return function (req, res) {
+        var offset = 0;
+
+         if (req.params.id && (isNaN(req.params.id) || req.params.id < -1440 || req.params.id > 1440)) {
+            res.send("Error building calendar: invalid timezone data")
+         }
+         else if (req.params.id) {
+                offset = (req.params.id/60) -4;
+         }
 
         //        
         var today = new Date();
         today.setHours(0,0,0,0);
+        today.setHours(today.getHours()+offset)
 
         var thisWeek = new Date(today);
         thisWeek.setDate(today.getDate() - today.getDay()+1);
@@ -66,7 +73,7 @@ return function (req, res) {
 
 
         function done() {
-        res.render('calendar', {
+        res.render('buildcalendar', {
                 'calendarData': calendarData,
             });
         }
@@ -82,6 +89,8 @@ return function (req, res) {
             }
             else if (matchDay && matchDay.setHours(0,0,0,0) === curDay.setHours(0,0,0,0)) {
               //  console.log("NEXT RESULTS")
+
+                
                 calendarData[curDayCounter].results.push(resultData[curResult])
                 curResult++
                 parseResult();
@@ -99,15 +108,31 @@ return function (req, res) {
             }
         }
 
-        console.log (last2Week)
-        console.log (next4Week)
+        function timeChange () {
+            resultData.forEach(function (result) { 
+                result.date.setHours(
+                    result.date.getHours()+offset
+                    )
+            });
+
+            parseResult();
+        }
+
         db.result.findbydate(
                 {date: {$gte: last2Week, $lte: next4Week}},
                  function (err, results) {
                     resultData = results;
                     results.reverse()
-                    parseResult();
+                    timeChange();
         });
+    };
+}
+
+
+exports.calendar = function(db) {
+return function (req, res) {
+        res.render('calendar', {
+            });
     };
 };
 
@@ -162,8 +187,6 @@ exports.results = function(db) {
 
                     var matchDay = new Date(result.date)
                     matchDay.setHours(0,0,0,0)
-                    console.log (matchDay)
-                    console.log (today)
 
                         if (matchDay.getDate() === today.getDate()) {
                             resultsToday.push(result);
@@ -321,8 +344,13 @@ exports.tourneys = function(db) {
         });
         
         db.tourney.findtourneyspage((skip),5,function (err, tourneys){
-            tourneysData = tourneys;
-            done();
+            if (tourneys[0]) {
+                tourneysData = tourneys;
+                done();
+            }
+            else {
+                res.status(404).send('Not Found');
+            }
         });
     };
 };
@@ -479,15 +507,14 @@ exports.vod = function(db) {
         var vodId = req.params.vodId;
         var eventId = req.params.eventId;
 
-        db.result.find ({vodId: vodId}, function (err, results) {
+        db.result.find ({vodId: vodId.toLowerCase()}, function (err, results) {
             var foundVod = false;
 
             if (results[0]) {
                 vodData = results[0]
                 doneVod = true;
-
                 results[0].vods.forEach(function(vod) {
-                    if (vod.path === vodName) {
+                    if (vod.pathLower === vodName.toLowerCase()) {
                         foundVod = true;
                     }
                 });
@@ -505,10 +532,7 @@ exports.vod = function(db) {
 
         });
         
-
-        
-
-        db.tourney.find({url : eventId}, function (err, tourneys) {
+        db.tourney.find({urlLower : eventId.toLowerCase()}, function (err, tourneys) {
             if (tourneys[0]) {
                 tourneyData = tourneys[0];
                 doneTourney = true;
@@ -518,71 +542,71 @@ exports.vod = function(db) {
                 res.status(404).send('Not found');
             }
 
-        });
+            db.result.findbydate(
+                {eventName : tourneys[0].name},
+                function (err, results) {
+                    var types = {},
+                    newItem, i, j, cur;
+                        for (i = 0, j = results.length; i < j; i++) {
 
-        db.result.findbydate(
-            {eventUrl : eventId},
-            function (err, results) {
-                var types = {},
-                newItem, i, j, cur;
-                    for (i = 0, j = results.length; i < j; i++) {
+                            var ri = results.length-i-1;
 
-                        var ri = results.length-i-1;
+                            if (!inObject(teams, results[ri].teamsMed[0])) {
+                                var newTeam = {};
+                                newTeam.name = results[ri].teamsMed[0];
+                                newTeam.url = results[ri].url[0];
+                                newTeam.elo = results[ri].eloBefore[0];
+                                newTeam.logos = results[ri].logos.team1;
 
-                        if (!inObject(teams, results[ri].teamsMed[0])) {
-                            var newTeam = {};
-                            newTeam.name = results[ri].teamsMed[0];
-                            newTeam.url = results[ri].url[0];
-                            newTeam.elo = results[ri].eloBefore[0];
-                            newTeam.logos = results[ri].logos.team1;
+                                teams.push(newTeam);
+                            }
 
-                            teams.push(newTeam);
-                        }
+                            if (!inObject(teams, results[ri].teamsMed[1])) {
+                                var newTeam = {};
+                                newTeam.name = results[ri].teamsMed[1];
+                                newTeam.url = results[ri].url[1];
+                                newTeam.elo = results[ri].eloBefore[1];
+                                newTeam.logos = results[ri].logos.team2;
 
-                        if (!inObject(teams, results[ri].teamsMed[1])) {
-                            var newTeam = {};
-                            newTeam.name = results[ri].teamsMed[1];
-                            newTeam.url = results[ri].url[1];
-                            newTeam.elo = results[ri].eloBefore[1];
-                            newTeam.logos = results[ri].logos.team2;
+                                teams.push(newTeam);
+                            }
 
-                            teams.push(newTeam);
-                        }
+                            cur = results[i];
 
-                        cur = results[i];
+                            if (cur.result[0]+cur.result[1] > 0 && types[cur.eventSub] && types[cur.eventSub].progress !== "Completed") { 
 
-                        if (cur.result[0]+cur.result[1] > 0 && types[cur.eventSub] && types[cur.eventSub].progress !== "Completed") { 
+                               types[cur.eventSub].progress = "In Progress"
 
-                           types[cur.eventSub].progress = "In Progress"
+                            }
 
-                        }
+                            if (!(cur.eventSub in types)) {
+                                types[cur.eventSub] = {sub: cur.eventSub, stage: cur.eventStage, endDate: cur.date, results: []};
+                                
+                                if (cur.result[0]+cur.result[1] > 0) {
+                                    types[cur.eventSub].progress = "Completed"
+                                }
+                                if (!types[cur.eventSub].progress)
+                                {
+                                    types[cur.eventSub].progress = "Upcoming"
 
-                        if (!(cur.eventSub in types)) {
-                            types[cur.eventSub] = {sub: cur.eventSub, stage: cur.eventStage, endDate: cur.date, results: []};
+                                }
+                                eventResults.push(types[cur.eventSub]);
+                            }
+
                             
-                            if (cur.result[0]+cur.result[1] > 0) {
-                                types[cur.eventSub].progress = "Completed"
-                            }
-                            if (!types[cur.eventSub].progress)
-                            {
-                                types[cur.eventSub].progress = "Upcoming"
-
-                            }
-                            eventResults.push(types[cur.eventSub]);
+                            types[cur.eventSub].startDate = cur.date;
+                            types[cur.eventSub].results.push(cur);
                         }
 
-                        
-                        types[cur.eventSub].startDate = cur.date;
-                        types[cur.eventSub].results.push(cur);
-                    }
+                    teams.sort(function(a, b) { 
+                            if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                            if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                            return 0;
+                    });
+                doneResults = true;
+                done();
+            });
 
-                teams.sort(function(a, b) { 
-                        if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                        if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                        return 0;
-                });
-            doneResults = true;
-            done();
         });
     };
 };
@@ -618,20 +642,19 @@ exports.eventresults = function(db) {
 
         
 
-        var eventId = req.params.id;
+        var eventId = req.params.id.toLowerCase();
 
-        db.tourney.find({url : eventId}, function (err, tourneys) {
+        db.tourney.find({urlLower : eventId}, function (err, tourneys) {
+            console.log (tourneys)
             if (!tourneys || tourneys.length < 1) {
                 res.status(404).send('Not found');
             }
 
             tourneyData = tourneys[0];
             doneTourney = true;
-            done();
-        });
 
-        db.result.findbydate(
-            {$and: [ {eventUrl : eventId}, {result: {$gt:-1}} ]},
+            db.result.findbydate(
+            {$and: [ {eventName : tourneys[0].name}, {result: {$gt:-1}} ]},
             function (err, results) {
                 var types = {},
                 newItem, i, j, cur;
@@ -695,6 +718,9 @@ exports.eventresults = function(db) {
                 });
             doneResults = true;
             done();
+            });
         });
+
+        
     };
 };

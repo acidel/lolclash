@@ -1,0 +1,68 @@
+mixin teamlistsmall(teams, region)
+	-var boxstyle
+	-var hstyle
+	-var headertext
+	if (region === "K")
+		-boxstyle = "background-color: #0C161F; border-color: #3E6D7D;";
+		-headertext = "Korea"
+	else if (region === "C")
+		-boxstyle = "background-color: #1C0B0B; border-color: #7F3F3F;";
+		-headertext = "China"
+	else if (region === "E")
+		-boxstyle = "background-color: #1D1E0C; border-color: #797C3D";
+		-headertext = "Europe"
+	else if (region === "N")
+		-boxstyle = "background-color: #0B0D1E; border-color: #3F477F";
+		-headertext = "North America"
+	else if (region === "A")
+		-boxstyle = "background-color: #140B1C; border-color: #5E3D7C;";
+		-headertext = "SEA"
+	div.regionlist
+		div.regionheader(style=boxstyle)
+			h1
+				=headertext
+		div#teamlistsmall
+			table(style=boxstyle)
+				each team, i in teams
+					-var boxcolor
+					if team.elo > 1850
+						-boxcolor = "#FF00CB"
+					else if team.elo > 1800
+						-boxcolor = "#F90493"
+					else if team.elo > 1750
+						-boxcolor = "#F4096B"
+					else if team.elo > 1700
+						-boxcolor = "#EF0E4A"
+					else if team.elo > 1650
+						-boxcolor = "#EA1228"
+					else if team.elo > 1600
+						-boxcolor = "#E52816"
+					else if team.elo > 1550
+						-boxcolor = "#E04C1A"
+					else if team.elo > 1500
+						-boxcolor = "#DB6D1E"
+					else if team.elo > 1450
+						-boxcolor = "#D68B22"
+					else if team.elo > 1400
+						-boxcolor = "#D1A625"
+					else if team.elo > 1350
+						-boxcolor = "#CCBE28"
+					else if team.elo > 1300
+						-boxcolor = "#B9C62B"
+					else if team.elo > 1250
+						-boxcolor = "#9CC12E"
+					else if team.elo > 1200
+						-boxcolor = "#82BC31"
+					else
+						-boxcolor = "#9B9B9B"
+					tr
+						td.center.grey(style="width:20px;")=i+1	
+						td(style="width:40px;")
+							div.colorbox(style="background-color:" + boxcolor)
+						td(style="width:40px;")
+							if (team.logos[1] !== "Unknown.png")
+								a(href= '/teams/' + team.url)
+									div.logo22(style='background: url(/img/logo/1/' + team.logos[1] + ') no-repeat 50% 50%')
+						td.teamname(style="width:125px;")
+							a.lb(href= '/teams/' + team.url) #{team.nameMed}
+						td.center.yellow(style="width: 90px;")= Math.round(team.elo)

@@ -2,6 +2,7 @@ include header
 include footer
 include matchlist
 include eventmatchlist
+include popular
 extends layout
 block content
 	div#screencontainer
@@ -19,8 +20,7 @@ block content
 							=" / "
 							a(href= '/vods/' + tourneyData.url)
 								=tourneyData.name
-
-					div.contenthugeheader.headersplit(style="margin-bottom: 6px;")
+					div.contenthugeheader.headersplit.hbg2(style="margin-bottom: 6px;")
 						h1
 							=tourneyData.name
 					div.darkbox
@@ -52,8 +52,8 @@ block content
 											="|"
 					div.tourneycontainersmall.contentlarge
 						div.eventlistleft
-							a(href= '/events/' + tourneyData.name)
-								img(src= '/img/eventlogo.png')
+							if (tourneyData.logos[3] !== "Unknown.png")
+								div.logo150(style='background: url(/img/event-logo/3/' + tourneyData.logos[3] + ') no-repeat 50% 50%')
 						div.eventlistright
 							p
 								=tourneyData.description
@@ -73,19 +73,12 @@ block content
 													div.logo40
 											div(style="text-align: right")
 												=team.name
-												=team.fake
 						div(style="clear:both")
-					div.contenthugeheader.smallmargin.headersplit
+					div.contenthugeheader.smallmargin.headersplit.hbg4
 						h1
 							="RESULTS & VODS"
 					+eventmatchlist(eventResults)
 				div#rightcontainer
-					div#upcomingmatches
-						div.contentlargeheader
-							h1 MODULE 1
-					div#upcomingmatches
-						div.contentlargeheader
-							h1 MODULE 2
 					div#ad1(style='background-image:url("/img/v1.png")')
 	+footer()
 

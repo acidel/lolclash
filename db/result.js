@@ -27,6 +27,7 @@ exports.setup = function () {
 		fake: [Boolean],
 		hotness: Number,
 		vods: [{
+			pathLower: String,
 			name: String,
 			path: String,
 			url: String

@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
 	var d = new Date();
 	var off = d.getTimezoneOffset();
 

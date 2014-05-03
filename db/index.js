@@ -101,8 +101,6 @@ exports.migrate = function () {
                     }            
                 }
 
-
-
                 team.update({
                     name: data[0]
                 },
@@ -192,11 +190,18 @@ exports.migrate = function () {
     var aliases = {},
         teams = {};
     var logosDir = [];
+    var eventLogosDir = [];
     var tourneys = [];
 
     for (var i=1;i<=5;i++) {
         logosDir[i] = fs.readdirSync('public/img/logo/'+ i + '/')
     }
+
+    for (var i=1;i<=3;i++) {
+        eventLogosDir[i] = fs.readdirSync('public/img/event-logo/'+ i + '/')
+    }
+        
+
     function createTeam(teamName, callback) {
 
 
@@ -237,6 +242,18 @@ exports.migrate = function () {
         if (tourneys.indexOf(tourneyData.name) !== -1) {
             return;
         }
+
+        tourneyData.logos = [];
+
+            tourneyData.logos[0] = "invalid"
+            for (var i=1;i<=3;i++) {
+                tourneyData.logos[i] = "Unknown.png"
+                if (eventLogosDir[i].indexOf(tourneyData.name.replace(/ /g, "-") + '.png') !== -1) {
+                    tourneyData.logos[i] = (tourneyData.name.replace(/ /g, "-") + '.png')
+                }
+            }
+
+
         tourneys.push(tourneyData.name)
         tourney.insert(tourneyData, callback);
     }
@@ -329,6 +346,7 @@ exports.migrate = function () {
                                         newVod.path = newVod.path + '-Game-'
                                                         +((i-11)/2+1);
                                     }
+                                    newVod.pathLower = newVod.path.toLowerCase();
                                     matchData.vods.push(newVod)
                                     
                                 }
@@ -341,6 +359,7 @@ exports.migrate = function () {
                                 var tourneyData = {};
                                 tourneyData.name = matchData.eventName;
                                 tourneyData.url = matchData.eventUrl;
+                                tourneyData.urlLower = matchData.eventUrl.toLowerCase();
                                 createTourney(tourneyData, done);
                                 numTourneys++;    
                             }
@@ -373,14 +392,6 @@ exports.migrate = function () {
     });
 };
 
-exports.loadaliases = function () {
-    fs.readFile('migrations/alias.csv', 'utf8', function(err, data) {
-        data.split('\n').forEach(function (line) {
-
-        });
-    });
-}
-
 
 
 exports.calcresults = function (callback) {
@@ -397,6 +408,12 @@ exports.calcresults = function (callback) {
         var totalResults = data.length;
         var lastDate;
         var rankingData = [];
+
+        var logosDir = [];
+
+        for (var i=1;i<=5;i++) {
+            logosDir[i] = fs.readdirSync('public/img/logo/'+ i + '/')
+        }
 
         async.forEachSeries(data, function (m, callback2) {
 
@@ -517,30 +534,30 @@ exports.calcresults = function (callback) {
             }
 
             function runmatch (callback3) {
-                var t1k = 54,
-                t2k = 54;
+                var t1k = 52,
+                t2k = 52;
 
                 totalGames++;
 
-                if (team1Placements <= 10 && team2Games >= 15 && team1Wins+team2Wins !== 0) {
+                if (team1Placements <= 15 && team2Games >= 15 && team1Wins+team2Wins !== 0) {
                         //t1k = t1k*Math.pow(60/(team1Games+3), 1/2)
                         t1k =t1k *(1.5 - (0.0/10)*team1Placements)
                         t1PlaceUpdate++;
                         
                 }
-                if (m.region[0] === "I" ) {
+                if (m.region[0] === "I" && m.date.getFullYear() === 2013) {
                      //t1k = t1k*1.5
-                     t1k=t1k*1.55
+                     t1k=t1k*2
                 }
 
-                if (team2Placements <= 10 && team1Games >= 15 && team1Wins+team2Wins !== 0) {
+                if (team2Placements <= 15 && team1Games >= 15 && team1Wins+team2Wins !== 0) {
                         t2k=t2k* (1.5 - (0.0/10)*team2Placements)
                         
                         t2PlaceUpdate++;
                        //t2k = t2k*Math.pow(60/(team2Games+3), 1/2)
                 }
-                if (m.region[0] === "I" ) {
-                   t2k = t2k*1.55
+                if (m.region[0] === "I" && m.date.getFullYear() === 2013) {
+                   t2k = t2k*2
                 }
 
                 var r1 = Math.pow(10, (team1Elo/400))
@@ -659,12 +676,32 @@ exports.calcresults = function (callback) {
                         resultData.url[1] = team2Url;
                     }
 
+                    //if it is an alias the medium/long name/ logos will be different than the ID
                     if (m.teams[0] !== team1Name) {
                         resultData.teamsMed[0] = resultData.teams[0];
+
+                        resultData.logos.team1 = [];
+                        resultData.logos.team1[0] = "invalid"
+                        for (var i=1;i<=5;i++) {
+                            resultData.logos.team1[i] = "Unknown.png"
+                            if (logosDir[i].indexOf(m.teams[0].replace(/ /g, "-") + '.png') !== -1) {
+                                resultData.logos.team1[i] = (m.teams[0].replace(/ /g, "-") + '.png')
+                            }
+                        }
                     }
 
+                    //if it is an alias the medium/long name/ logos will be different than the ID
                     if (m.teams[1] !== team2Name) {
                         resultData.teamsMed[1] = resultData.teams[1];
+
+                        resultData.logos.team2 = [];
+                        resultData.logos.team2[0] = "invalid"
+                        for (var i=1;i<=5;i++) {
+                            resultData.logos.team2[i] = "Unknown.png"
+                            if (logosDir[i].indexOf(m.teams[1].replace(/ /g, "-") + '.png') !== -1) {
+                                resultData.logos.team2[i] = (m.teams[1].replace(/ /g, "-") + '.png')
+                            }
+                        }
                     }
 
                     if (Math.round(((team1Elo+team2Elo)-1800)/160) >= 7.2) {
@@ -704,9 +741,6 @@ exports.calcresults = function (callback) {
 
                         console.log(m.teams[0] + "\t" + newElos[0]  + "\t" + m.teams[1] + "\t" +newElos[1])
                         
-
-
-
                         team.updateelo(m.teams[0], newElos[0], t1Wins, t2Wins, t1PlaceUpdate,
                             function() {team.updateelo(m.teams[1], newElos[1], t2Wins, t1Wins, t2PlaceUpdate, saveRanking )} );
                             resultsSaved++;
@@ -742,7 +776,6 @@ exports.calcresults = function (callback) {
                 });
             }
 
-
             team.find({$or: [{name : m.teams[0]}, { aliases: { $elemMatch: { name: m.teams[0] } } }]}, function (err, team1){
                 team1Name = (team1[0].name);
                 team1Elo = (team1[0].elo);
@@ -772,8 +805,6 @@ exports.calcresults = function (callback) {
             });
         });
     });
-
-
 };
 
 exports.destroy = function () {

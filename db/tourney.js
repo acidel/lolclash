@@ -7,11 +7,13 @@ exports.setup = function () {
 		name: String,
 		startDate: Date,
 		url: String,
+		urlLower : String,
 		website: String,
 		region: String,
 		endDate: Date,
 		description: String,
 		score: Number,
+		logos: [String],
 		bio: String,
 		related: [{
 			name: [String],

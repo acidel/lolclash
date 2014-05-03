@@ -25,6 +25,7 @@ exports.setup = function () {
 		region: String,
 		hotness: Number,
 		vods: [{
+			pathLower: String,
 			name: String,
 			path: String,
 			url: String

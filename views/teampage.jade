@@ -1,5 +1,6 @@
 include header
 include footer
+include popular
 extends layout
 block content
 	div#screencontainer
@@ -17,12 +18,12 @@ block content
 							=" / "
 							a(href= '/teams/' + team.url)
 								=team.nameMed
-					div.contenthugeheader.headersplit
+					div.contenthugeheader.headersplit.hbg3
 						h1
 							=team.nameLong
 						img(src= '/img/flagsL/' + team.country + '.png' style="float: right; margin-right: 10px; margin-top: -6px;")
 					if team.aliases[0]
-						div.contentdarkheader.headerborder
+						div.darkbox
 							h1.grey
 								="Formerly: "
 								each alias, i in team.aliases
@@ -93,7 +94,7 @@ block content
 							h1
 								="MATCHES"
 						table
-							tr.gold
+							tr
 								th="DATE"
 								th="EVENT"
 								th
@@ -135,10 +136,10 @@ block content
 										a.dblue(href= '/vods/' + result.eventUrl) 
 											=result.eventName.replace(/\b\d{4}\b/g,"").slice(0,20)
 								
-									td(style="width:30px")
+									td(style="width:40px")
 										a(href= '/teams/' + result.url[1])
 											if (result.logos.team2[1] !== "Unknown.png")
-												img(src= '/img/logo/1/'+ result.logos.team2[1])
+												div.logo22(style='background: url(/img/logo/1/' + result.logos.team2[1] + ') no-repeat 50% 50%')
 									if (result.teams[1] === "?")
 										td.grey()
 											="TBD"
@@ -194,9 +195,8 @@ block content
 											=result.result[0] + '-' + result.result[1]
 						if (results.length > 15)
 							a(href="#")
-								div.showmore.center
+								div.showmore.center.dbg2
 									="Show All Results"
-					
 					div#teambio.contentlarge
 						div.contentlargeheader.headerborder
 							h1
@@ -238,11 +238,6 @@ block content
 									td
 										="March 4 1969"
 				div#rightcontainer
-						div#upcomingmatches
-							div.contentlargeheader
-								h1 MODULE 1
-						div#upcomingmatches
-							div.contentlargeheader
-								h1 MODULE 2
-						div#ad1(style='background-image:url("/img/v1.png")')
+					div#ad1(style='background-image:url("/img/v1.png")')
+					+popular()
 	+footer()

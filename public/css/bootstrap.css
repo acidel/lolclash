@@ -61,14 +61,18 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 .carousel-control.left {
-
-  background-repeat: repeat-x;
+  background-image:url("/img/left-cal-arrow.png");
+  background-repeat: repeat-y;
+  left: -10px;
+  top: 30px;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
 }
 .carousel-control.right {
+  background-image:url("/img/right-cal-arrow.png");
   left: auto;
-  right: 0;
-
+  right: -10px;
+  top: 30px;
+background-repeat: repeat-y;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
 }
 .carousel-control:hover,

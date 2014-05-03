@@ -1,6 +1,7 @@
 include header
 include footer
 include listbrowser
+include popular
 extends layout
 block content
     div#screencontainer
@@ -14,14 +15,14 @@ block content
                                     ="Home"
                                 =" / "
                                 a(href= '/vods/')
-                                    ="Events"
-                        div.contenthugeheader.headersplit.smallmargin
+                                    ="Event VoDs"
+                        div.contenthugeheader.headersplit.smallmargin.hbg3
                             h1
                                 ="Event VoDs"
                         +listbrowser('/vods/', count, 5, page)
                         div.smallmargin
                         each tourney, i in tourneys
-                            div.tourneycontainer
+                            div.tourneycontainer.smallmargin
                                 div.darkbox
                                     h1
                                         a(href= '/vods/' + tourney.url)
@@ -38,8 +39,10 @@ block content
                                                 span.green
                                                     ="Completed"
                                 div.eventlistleft
-                                    a(href= '/vods/' + tourney.url)
-                                        img(src= '/img/eventlogo.png')
+                                    if (tourney.logos[3] !== "Unknown.png")
+                                        div.logo150
+                                            a(href= '/vods/' + tourney.url)
+                                                div.logo150(style='background: url(/img/event-logo/3/' + tourney.logos[3] + ') no-repeat 50% 50%')
                                 div.eventlistright
                                     h1.gold
                                         if (tourney.startDate)
@@ -51,17 +54,12 @@ block content
                                         =tourney.description
                                     a(href= '/vods/' + tourney.url)
                                         div.button
-                                            h1
-                                                ="VODS & SCHEDULE"
-                            <br>
+                                            ="VODS & SCHEDULE"
+                                div.clearboth
+
                         div.contentlarge
                         +listbrowser('/vods/', count, 5, page)
                     div#rightcontainer
-                        div#upcomingmatches
-                            div.contentlargeheader
-                                h1 MODULE 1
-                        div#upcomingmatches
-                            div.contentlargeheader
-                                h1 MODULE 2
                         div#ad1(style='background-image:url("/img/v1.png")')
+                        +popular()
     +footer()

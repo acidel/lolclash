@@ -29,7 +29,9 @@ if ('development' == app.get('env')) {
 
 db.setup(function () {
 	app.get('/', routes.index(db));
+	app.get('/ajax/loadcalendar/:id', routes.buildcalendar(db) );
 	app.get('/calendar', routes.calendar(db));
+	app.get('/calendar/time/:id', routes.calendar(db));
 	app.get('/teams', routes.teams(db));
 	app.get('/results', routes.results(db));
 	app.get('/teams', routes.teams(db));

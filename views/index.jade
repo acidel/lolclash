@@ -2,7 +2,7 @@ include header
 include footer
 include teamlist
 include matchlist
-
+include popular
 extends layout
 block content
 	script(src="/hidespoiler.js" type="text/javascript")
@@ -13,15 +13,29 @@ block content
 			div#wrapper
 				div#leftcontainer
 					div#newsheader.contentlarge
-						div#feature(style='background-image:url("/img/ft1.png")')
-						div#featureright(style='background-image:url("/img/ftr1.png")')
-						div#featureright(style='background-image:url("/img/ftr2.png")')
+						a(href="#")
+							div#feature(style='background-image:url("/img/ft1.png")')
+								.featureheader
+									h1
+										="Behind the Rankings..."
+									h2
+										="Creating a ranking system for League of Legends"
+						a(href="/calendar")
+							div#featureright(style='background-image:url("/img/ftr1.png")')
+								.featureheader
+									h3
+										="Calendar"
+									h2
+										="Event Schedule"
+						a(href="/vods/All-Star-2014")
+							div#featureright(style='background-image:url("/img/ftr2.png")')
+								.featureheader
 					div.contentlargeheader.headerborder.smallmargin
 						h1 CURRENT RANKINGS
-					div.fronttable
-						+teamlist(teams,1)
-						h1.center
-							a.center.lb(href='/teams')
+					+teamlist(teams,1)
+					h1.center.smallmargin
+						a.center(href='/teams/')
+							div.showmore.center.dbg1
 								="Click for full rankings..."
 					div.contentlargeheader.headerborder.smallmargin
 						h1 TOURNAMENTS
@@ -41,36 +55,34 @@ block content
 									-boxclass = "tourneybox1"
 								else if i === 5
 									-boxclass = "tourneybox2"
-
 								a(href='/vods/' + tourney.url)
 									li(class=boxclass)
 										div.tbox1
 											h1
 												=tourney.name.slice(0,21)
-										div.tbox2
-											img(src= '/img/eventlogo.png' height=75 width=75)
+										if tourney.logos[2] !== 'Unknown.png'
+											div.tbox2(style='background: url(/img/event-logo/2/' + tourney.logos[2] + ') no-repeat 50% 50%')
+										else
+											div.tbox2
 										div.tbox3
 											h1
 												="Watch VoDs"
 						div.clearboth
-					h1.center
-							a.center.lb(href='/results')
-								="Click for all event VoDs..."
+					h1.center.smallmargin
+							a.center(href='/vods/')
+								div.showmore.center.dbg3
+									="Click for all event VoDs..."
 					div.contentlargeheader.headerborder
 						h1 RECENT MATCHES
 					div#matchlist.smallmargin.headerborder
 						+matchlist(results)
 					h1.center
-							a.center.lb(href='/teams')
-								="Click for all recent results..."
+							a.center(href='/results/')
+								div.showmore.center.dbg2
+									="Click for all recent results..."
 				div#rightcontainer
-					div#upcomingmatches
-						div.contentlargeheader
-							h1 MODULE 1
-					div#upcomingmatches
-						div.contentlargeheader
-							h1 MODULE 2
 					div#ad1(style='background-image:url("/img/v1.png")')
+					+popular()
 	+footer()
 
 

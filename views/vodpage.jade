@@ -2,6 +2,7 @@ include header
 include footer
 include matchlist
 include eventmatchlist
+include popular
 extends layout
 block content
 	div#screencontainer
@@ -23,7 +24,7 @@ block content
 							a(href= '/vods/' + tourneyData.url + '/' +vodData.vodId+ '/' + vodPath)
 								=vodPath.replace(/-/g, " ")
 
-					div.contenthugeheader.headersplit.smallmargin
+					div.contenthugeheader.headersplit.smallmargin.hbg2
 						h1
 							=tourneyData.name
 					div.darkbox.smallmargin
@@ -44,7 +45,7 @@ block content
 								if (vodData.logos.team2[3] !== "Unknown.png")
 									img(src= '/img/logo/3/'+ vodData.logos.team2[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
 					each vod, i in vodData.vods
-						if vod.path === vodPath
+						if vod.pathLower === vodPath.toLowerCase()
 							if (vod.url.indexOf("youtube") !== -1)
 								iframe(width ="760" height="428" src=vod.url.replace("watch?v=", "embed/") frameborder="0" allowfullscreen)
 								-var popupUrl = vod.url.replace("watch?v=", "watch_popup?v=")
@@ -60,7 +61,7 @@ block content
 						div#gameslist.contentlarge(style="height: #{rows}px")
 							each vod, i in vodData.vods
 								.videobutton
-									if vod.path === vodPath
+									if vod.pathLower === vodPath.toLowerCase()
 										h1.grey
 											=vod.name + " "
 									else
@@ -69,12 +70,7 @@ block content
 												=vod.name + " "
 					+eventmatchlist(eventResults)
 				div#rightcontainer
-					div#upcomingmatches
-						div.contentlargeheader
-							h1 MODULE 1
-					div#upcomingmatches
-						div.contentlargeheader
-							h1 MODULE 2
 					div#ad1(style='background-image:url("/img/v1.png")')
+					+popular()
 	+footer()
 
