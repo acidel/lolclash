@@ -80,9 +80,58 @@ $(document).ready(function() {
         return false;
     });
 
+        $('.team1switch').click(function() {
 
+        var $this = $(this)
+		var realTeam = $this.parent().parent().find('.teamhide');
+		var teamLogo = $this.parent().parent().parent().find('.team1hideimg')
+		var newSrc = teamLogo.data('timg');
+
+		teamLogo.css("background-image", "url("+newSrc+")")
+		$this.hide()
+		realTeam.show()
+        return false;
+    });
+
+    $('.team2switch').click(function() {
+
+        var $this = $(this)
+		var realTeam = $this.parent().parent().find('.teamhide');
+		var teamLogo = $this.parent().parent().parent().find('.team2hideimg')
+		var newSrc = teamLogo.data('timg');
+
+		teamLogo.css("background-image", "url("+newSrc+")")
+		$this.hide()
+		realTeam.show()
+        return false;
+    });
 
     $('.allspoilers').click(function() {
+
+
+		$('.team2switch').each (function (){
+			var $this = $(this)
+			var realTeam = $this.parent().parent().find('.teamhide');
+			var teamLogo = $this.parent().parent().parent().find('.team2hideimg')
+			var newSrc = teamLogo.data('timg');
+
+			teamLogo.css("background-image", "url("+newSrc+")")
+			$this.hide()
+			realTeam.show()
+		});
+
+		$('.team1switch').each (function (){ 
+			var $this = $(this)
+			var realTeam = $this.parent().parent().find('.teamhide');
+			var teamLogo = $this.parent().parent().parent().find('.team1hideimg')
+			var newSrc = teamLogo.data('timg');
+
+			teamLogo.css("background-image", "url("+newSrc+")")
+			$this.hide()
+			realTeam.show()
+		});
+
+
     	$('.scoreswitch').each (function (){
 
 	        var $this = $(this)

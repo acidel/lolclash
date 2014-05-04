@@ -4,7 +4,14 @@ mixin eventmatchlist(eventResults)
 	script(src="/hidespoiler.js" type="text/javascript")
 	script(src="/timechange.js" type="text/javascript")
 	script(src="/eventsort.js" type="text/javascript")
+	-var hideList = false;
+	-var hideTeams = false;
+	-var totalMatches = 0;
+	-var totalSubs = 0;
 	div.showall
+		a(href="#")
+			div.allspoilers.smallmargin
+				="Show All Spoilers"
 		if (eventResults[0].stage)
 			-var currentStage = eventResults[0].stage
 			div.contentlargeheader.smallmargin.nobg.headerborder
@@ -13,6 +20,18 @@ mixin eventmatchlist(eventResults)
 		else
 			div.smallmargin
 		each section, i in eventResults
+			if (hideList === false)
+				-totalSubs++
+				-totalMatches = totalMatches+section.results.length
+				if ((totalSubs > 4 || totalMatches > 15) && totalSubs !== 1)
+					-hideList = true
+			if (section.stage.toLowerCase().indexOf("playo") !== -1 || section.stage.toLowerCase().indexOf("brack") !== -1 || section.sub.toLowerCase().indexOf("quarter") !== -1 || section.sub.toLowerCase().indexOf("semi") !== -1 || section.sub.toLowerCase().indexOf("final") !== -1 || section.sub.toLowerCase().indexOf("3rd") !== -1 || section.sub.toLowerCase().indexOf("5th") !== -1 || section.sub.toLowerCase().indexOf("tiebreak") !== -1)
+				-hideTeams = true
+			else
+				-hideTeams = false
+
+
+
 			if (section.stage && section.stage != currentStage)
 				div.nobg(style="height: 10px;")
 				-currentStage = section.stage
@@ -48,8 +67,11 @@ mixin eventmatchlist(eventResults)
 												=section.progress
 			if section.results.length > 6
 				div#matchlistsmall
-					+smallmatchlist(section.results, true)
+					+smallmatchlist(section.results, true, hideList)
 			else
 				div#matchlist
-					+matchlist(section.results, true)
-			div.spacerswitch(data-sub=section.sub.replace(/[\. ,:'-]+/g, "") style="margin-bottom: 2px;")
+					+matchlist(section.results, true, hideList, hideTeams)
+			if hideList === true
+				div.spacerswitch(data-sub=section.sub.replace(/[\. ,:'-]+/g, "") style="margin-bottom: 6px;")
+			else
+				div.spacerswitch(data-sub=section.sub.replace(/[\. ,:'-]+/g, "") style="margin-bottom: 6px; display: none;")

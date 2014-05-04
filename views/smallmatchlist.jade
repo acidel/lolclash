@@ -1,5 +1,8 @@
-mixin smallmatchlist(results, noEvent, hidden)
-	table#matchtable
+mixin smallmatchlist(results, noEvent, hidden, hideTeams)
+	-var hidestyle
+	if hidden
+		-hidestyle = "display: none"
+	table#matchtable(style=hidestyle data-sub=results[0].eventSub.replace(/[\. ,:'-]+/g, ""))
 		tbody
 			each result, i in results
 				tr(

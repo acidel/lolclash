@@ -1,5 +1,12 @@
-mixin matchlist(results, noEvent, hidden)
-	table#matchtable
+mixin matchlist(results, noEvent, hidden, hideTeams)
+	-var hidestyle
+	if hidden
+		-hidestyle = "display: none"
+	if hideTeams
+		-hidestyleT = "display: none"
+	else
+		-hidestyleT = ""
+	table#matchtable(style=hidestyle data-sub=results[0].eventSub.replace(/[\. ,:'-]+/g, ""))
 		tbody
 			each result, i in results
 				tr(
@@ -23,7 +30,6 @@ mixin matchlist(results, noEvent, hidden)
 										=result.date.getHours()
 									else
 										=result.date.getHours()-12
-
 								if result.date.getMinutes() !== 0
 									=':' + ('0' + result.date.getMinutes()).slice(-2) 
 								span.ampm
@@ -52,25 +58,35 @@ mixin matchlist(results, noEvent, hidden)
 								span.grey
 									="TBD"
 							else if (result.fake[0])
-								=result.teamsMed[0].toUpperCase()
+								span.teamhide
+									=result.teamsMed[0].toUpperCase()
 							else
 								a(href= '/teams/' + result.url[0])
-									if result.teamsMed[0].length < 13
-										=result.teamsMed[0].toUpperCase().slice(0,12)
-									else
-										=result.teamsShort[0].toUpperCase().slice(0,12)
-									<br>
-									span(style=("font-size: 13px; font-weight: 500;"))
-										span.gold=Math.round(result.eloBefore[0]) + ' '
-										span.delta
-											if ((Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])) !== 0)
-												if (result.eloAfter[0] >= result.eloBefore[0])
-													span.green='+'+(Math.round(result.eloAfter[0]- result.eloBefore[0]))
-												else
-													span.red=Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])
+									if hideTeams === true
+										a(href='#')
+											div.hideteambutton.team1switch.grey
+												="[Show Team]"
+									span.teamhide(style=hidestyleT)
+										if result.teamsMed[0].length < 13
+											=result.teamsMed[0].toUpperCase().slice(0,12)
+										else
+											=result.teamsShort[0].toUpperCase().slice(0,12)
+										<br>
+										span(style=("font-size: 13px; font-weight: 500;"))
+											span.gold=Math.round(result.eloBefore[0]) + ' '
+											span.delta
+												if ((Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])) !== 0)
+													if (result.eloAfter[0] >= result.eloBefore[0])
+														span.green='+'+(Math.round(result.eloAfter[0]- result.eloBefore[0]))
+													else
+														span.red=Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])
 					td(style="width: 60px; padding-top: 3px")
 						a(href= '/teams/' + result.url[0])
-							div.logo40(style='background: url(/img/logo/3/' + result.logos.team1[3] + ') no-repeat 50% 50%')
+							if hideTeams === false
+								div.logo40(style='background: url(/img/logo/3/' + result.logos.team1[3] + ') no-repeat 50% 50%')
+							else
+								div.logo40.team1hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
+										  data-timg='/img/logo/3/' + result.logos.team1[3])
 					td.grey.center(style="font-size: 15px; font-weight: bold; width: 70px;")
 						if (result.result[0] === 0 && result.result[1] === 0)
 							span(style="font-size: 24px;")
@@ -82,28 +98,38 @@ mixin matchlist(results, noEvent, hidden)
 										="Show"
 					td.center(style="width: 60px; padding-top: 3px")
 						a(href= '/teams/' + result.url[1])
-							div.logo40(style='background: url(/img/logo/3/' + result.logos.team2[3] + ') no-repeat 50% 50%')
+							if hideTeams === false
+								div.logo40(style='background: url(/img/logo/3/' + result.logos.team2[3] + ') no-repeat 50% 50%')
+							else
+								div.logo40.team2hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
+										  data-timg='/img/logo/3/' + result.logos.team2[3])
 					td(style="width: 130px; font-size: 17px;  text-align: left; font-weight: 500; padding-left: 10px; line-height: 16px;")
 						if (result.teams[1] === "?")
 								span.grey
 									="TBD"
 						else if (result.fake[1])
-							=result.teamsMed[1].toUpperCase()
+							span.teamhide
+								=result.teamsMed[1].toUpperCase()
 						else
 							a(href= '/teams/' + result.url[1]) 
-								if result.teamsMed[1].length < 13
-									=result.teamsMed[1].toUpperCase().slice(0,12)
-								else
-									=result.teamsShort[1].toUpperCase().slice(0,12)
-								<br>
-								span(style=("font-size: 13px; font-weight: 500"))
-									span.gold=Math.round(result.eloBefore[1]) + ' '
-									span.delta
-										if ((Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])) !== 0)
-											if (result.eloAfter[1] >= result.eloBefore[1])
-												span.green='+'+(Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1]))
-											else
-												span.red=Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1])
+								if hideTeams === true
+										a(href='#')
+											div.hideteambutton.team2switch.grey
+												="[Show Team]"
+								span.teamhide(style=hidestyleT)
+									if result.teamsMed[1].length < 13
+										=result.teamsMed[1].toUpperCase().slice(0,12)
+									else
+										=result.teamsShort[1].toUpperCase().slice(0,12)
+									<br>
+									span(style=("font-size: 13px; font-weight: 500"))
+										span.gold=Math.round(result.eloBefore[1]) + ' '
+										span.delta
+											if ((Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])) !== 0)
+												if (result.eloAfter[1] >= result.eloBefore[1])
+													span.green='+'+(Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1]))
+												else
+													span.red=Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1])
 					td(style="padding-right: 20px; width: 30px")
 						if result.vods[0]
 							a(href= '/vods/' + result.eventUrl + '/'+ result.vodId + '/' + result.vods[0].path)

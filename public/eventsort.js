@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $('#matchtable tr').hide();
 
 
     $('.matchfilter a').click(function() {
@@ -8,7 +7,7 @@ $(document).ready(function() {
         var sub = $this.data('sub');
 
 
-        	$('#matchtable tr').each (function (){
+        	$('table#matchtable').each (function (){
 
 				if ($(this).data("sub") === sub) {
 					$(this).toggle();
