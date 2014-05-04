@@ -260,7 +260,7 @@ exports.migrate = function () {
     }
 
     fs.readFile('migrations/alias.csv', 'utf8', function (err, data) {
-        data.split('\n').forEach(function (line) {
+        data.split('\r\n').forEach(function (line) {
             var arr = line.split(',');
             arr.forEach(function (alias, index) {
                 if (index === 0) {
@@ -310,6 +310,10 @@ exports.migrate = function () {
                             matchData.teams = [arr[0], arr[1]];
                             matchData.teamsLower = [arr[0].toLowerCase(), arr[1].toLowerCase()];
                             matchData.date = new Date(arr[2]);
+
+                            //CONVERT TIME TO UTC HOLYSHIT DAYLIGHT
+
+
                             if (arr[3]) {
                                 matchData.date.setHours(arr[3].split(':')[0])
                                 if (arr[3].split(':')[1]) {
