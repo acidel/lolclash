@@ -111,7 +111,7 @@ exports.buildcalendar = function(db) {
         function timeChange () {
             resultData.forEach(function (result) { 
                 result.date.setHours(
-                    result.date.getHours()+offset
+                    result.date.getHours()-offset
                     )
             });
 
