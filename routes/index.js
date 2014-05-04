@@ -645,7 +645,6 @@ exports.eventresults = function(db) {
         var eventId = req.params.id.toLowerCase();
 
         db.tourney.find({urlLower : eventId}, function (err, tourneys) {
-            console.log (tourneys)
             if (!tourneys || tourneys.length < 1) {
                 res.status(404).send('Not found');
             }

@@ -52,8 +52,7 @@ block content
 											="|"
 					div.tourneycontainersmall.contentlarge
 						div.eventlistleft
-							if (tourneyData.logos[3] !== "Unknown.png")
-								div.logo150(style='background: url(/img/event-logo/3/' + tourneyData.logos[3] + ') no-repeat 50% 50%')
+							div.logo150(style='background: url(/img/event-logo/3/' + tourneyData.logos[3] + ') no-repeat 50% 50%')
 						div.eventlistright
 							p
 								=tourneyData.description
@@ -67,10 +66,7 @@ block content
 									a(href= '/teams/' + team.url)
 										li
 											div(style="float: left; padding-right: 5px" )
-												if (team.logos[3] !== "Unknown.png")
-													div.logo40(style='background: url(/img/logo/3/' + team.logos[3] + ') no-repeat 50% 50%')
-												else
-													div.logo40
+												div.logo40(style='background: url(/img/logo/3/' + team.logos[3] + ') no-repeat 50% 50%')
 											div(style="text-align: right")
 												=team.name
 						div(style="clear:both")

@@ -32,8 +32,7 @@ block content
 							=vodData.eventSub
 							=": "
 							span.white
-								if (vodData.logos.team1[3] !== "Unknown.png")
-									img(src= '/img/logo/3/'+ vodData.logos.team1[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
+								img(src= '/img/logo/3/'+ vodData.logos.team1[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
 								=vodData.teamsMed[0]
 								span.yellow
 									= " (" + Math.round(vodData.eloBefore[0]) + ")"
@@ -42,8 +41,7 @@ block content
 								=vodData.teamsMed[1]
 								span.yellow
 									= " (" + Math.round(vodData.eloBefore[1]) + ")"
-								if (vodData.logos.team2[3] !== "Unknown.png")
-									img(src= '/img/logo/3/'+ vodData.logos.team2[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
+								img(src= '/img/logo/3/'+ vodData.logos.team2[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
 					each vod, i in vodData.vods
 						if vod.pathLower === vodPath.toLowerCase()
 							if (vod.url.indexOf("youtube") !== -1)

@@ -81,17 +81,11 @@ div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
 														=" PM"
 											div.center.grey(style="height: 35px;")
 												div.center.lb(style="width:45%; float: left;")
-													if result.logos.team1[4] !== "Unknown.png"
-														div.logo30(style='background: url(/img/logo/2/' + result.logos.team1[2] + ') no-repeat 50% 50%')
-													else
-														div(style="height: 30px; width: 30px;")
+													div.logo30(style='background: url(/img/logo/2/' + result.logos.team1[2] + ') no-repeat 50% 50%')
 												div.center.darkgrey(style="width:10%; float: left;line-height: 30px;" )
 													="vs"
 												div.center.lb(style="width:45%; float: right;")
-													if result.logos.team2[4] !== "Unknown.png"
-														div.logo30(style='background: url(/img/logo/2/' + result.logos.team2[2] + ') no-repeat 50% 50%')
-													else
-														div(style="height: 30px; width: 30px;")
+													div.logo30(style='background: url(/img/logo/2/' + result.logos.team2[2] + ') no-repeat 50% 50%')
 											div(style="height: 20px;")
 												div.center(style="width:50%; float: left;font-size: 15px;")
 													if (result.teams[0] === "?")

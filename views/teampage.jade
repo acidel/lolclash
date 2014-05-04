@@ -32,10 +32,7 @@ block content
 									else
 										=', ' + alias.name.replace("ex-", "")
 					div#teaminfo.smallmargin
-						if team.logos[4] !== 'Unknown.png'
-							div.teamlogo(style='background: url(/img/logo/4/' + team.logos[4] + ') no-repeat 50% 50%')
-						else
-							div.teamlogo
+						div.teamlogo(style='background: url(/img/logo/4/' + team.logos[4] + ') no-repeat 50% 50%')
 						div.teaminfobox
 							div.inforank
 								if team.ranking
@@ -138,8 +135,7 @@ block content
 								
 									td(style="width:40px")
 										a(href= '/teams/' + result.url[1])
-											if (result.logos.team2[1] !== "Unknown.png")
-												div.logo22(style='background: url(/img/logo/1/' + result.logos.team2[1] + ') no-repeat 50% 50%')
+											div.logo22(style='background: url(/img/logo/1/' + result.logos.team2[1] + ') no-repeat 50% 50%')
 									if (result.teams[1] === "?")
 										td.grey()
 											="TBD"

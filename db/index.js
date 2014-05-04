@@ -11,8 +11,8 @@ var db,
 
 // Setup db connection and all that gay shit
 exports.setup = function (callback) {
-    mongoose.connect(process.env.MONGOHQ_URL);
-    //mongoose.connect('mongodb://localhost/asdf');
+    //mongoose.connect(process.env.MONGOHQ_URL);
+    mongoose.connect('mongodb://localhost/asdf');
     db = mongoose.connection;
 
     db.on('error', console.error.bind(console, 'connection error:'));
@@ -99,7 +99,13 @@ exports.migrate = function () {
                     logos[i] = "Unknown.png"
                     if (logosDir[i].indexOf(nameLong.replace(/ /g, "-") + '.png') !== -1) {
                         logos[i] = (nameLong.replace(/ /g, "-") + '.png')
-                    }            
+                    }
+                    else if (logosDir[i].indexOf(nameMed.replace(/ /g, "-") + '.png') !== -1) {
+                        logos[i] = (nameMed.replace(/ /g, "-") + '.png')
+                    }
+                    else if (logosDir[i].indexOf(nameShort.replace(/ /g, "-") + '.png') !== -1) {
+                        logos[i] = (nameShort.replace(/ /g, "-") + '.png')
+                    }
                 }
 
                 team.update({
