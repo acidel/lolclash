@@ -32,7 +32,7 @@ mixin matchlist(results, noEvent)
 									else
 										=" PM"
 					td(style="width: 30px")
-						img(src= '/img/flags/' + result.region + '.png')
+						img(src= '/img/flags/' + result.region.toLowerCase() + '.png')
 					td(style="width: 150px; font-size: 13px;" )
 							if (!noEvent)
 								a.grey(href= '/vods/' + result.eventUrl)
