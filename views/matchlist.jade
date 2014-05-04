@@ -1,4 +1,4 @@
-mixin matchlist(results, noEvent)
+mixin matchlist(results, noEvent, hidden)
 	table#matchtable
 		tbody
 			each result, i in results
@@ -32,7 +32,8 @@ mixin matchlist(results, noEvent)
 									else
 										=" PM"
 					td(style="width: 30px")
-						img(src= '/img/flags/' + result.region.toLowerCase() + '.png')
+						if (!noEvent)
+							img(src= '/img/flags/' + result.region.toLowerCase() + '.png')
 					td(style="width: 150px; font-size: 13px;" )
 							if (!noEvent)
 								a.grey(href= '/vods/' + result.eventUrl)

@@ -3,6 +3,7 @@ include footer
 include teamlist
 include matchlist
 include popular
+include adright
 extends layout
 block content
 	script(src="/hidespoiler.js" type="text/javascript")
@@ -81,7 +82,8 @@ block content
 								div.showmore.center.dbg2
 									="Click for all recent results..."
 				div#rightcontainer
-					div#ad1(style='background-image:url("/img/v1.png")')
+					div#ad1
+						+adright()
 					+popular()
 	+footer()
 

@@ -631,11 +631,9 @@ th {
 }
 #ad1
 {
-	border-style: solid;
-	border-color: #151515;
-	border-width: 1px;
-	height:572px;
-	background-repeat: no-repeat;
+	margin: auto;
+	width: 120px;
+	height:600px;
 	margin-bottom: 21px;
 }
 
