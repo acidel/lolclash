@@ -11,7 +11,7 @@ mixin teamlist(teams, page)
 				th
 			each team, i in teams
 				tr
-					td.center.grey(style="width:30px;")=i+(20*(page-1))+1	
+					td.center.grey(style="width:30px;")=i+(15*(page-1))+1	
 					td(style="width:35px;")
 						if team.delta > 2
 							span.green

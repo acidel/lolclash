@@ -12,8 +12,8 @@ var db,
 
 // Setup db connection and all that gay shit
 exports.setup = function (callback) {
-    mongoose.connect(process.env.MONGOHQ_URL);
-    //mongoose.connect('mongodb://localhost/asdf');
+    //mongoose.connect(process.env.MONGOHQ_URL);
+    mongoose.connect('mongodb://localhost/asdf');
     db = mongoose.connection;
 
     db.on('error', console.error.bind(console, 'connection error:'));
@@ -358,14 +358,14 @@ exports.migrate = function () {
                                 if (arr[i+1] && arr[i+1].length > 0) {
                                     var newVod = {};
                                     newVod.url = arr[i+1]
-                                    newVod.path = matchData.eventSub
+                                    newVod.path = matchData.eventSub.replace(/[\. ,:-]+/g, "-")
                                                 + '-'
-                                                + matchData.teams[0]
+                                                + matchData.teams[0].replace(/[\. ,:-]+/g, "-")
                                                 + '-vs-'
-                                                + matchData.teams[1]
+                                                + matchData.teams[1].replace(/[\. ,:-]+/g, "-")
                                     if (arr[i]) {
                                         newVod.name = arr[i]
-                                        newVod.path = newVod.path+arr[i]
+                                        newVod.path = newVod.path+arr[i].replace(/[\. ,:-]+/g, "-")
                                     }
                                     else if (arr[12] && arr[14]) {
                                         newVod.name = 'Game '
@@ -373,6 +373,13 @@ exports.migrate = function () {
                                         newVod.path = newVod.path + '-Game-'
                                                         +((i-11)/2+1);
                                     }
+
+                                    //OVERRIDE PATH IF NO LINK
+                                    if (arr[i+1] === "#")
+                                        {
+                                            newVod.path = "#"
+                                        }
+                                    
                                     newVod.pathLower = newVod.path.toLowerCase();
                                     matchData.vods.push(newVod)
                                     

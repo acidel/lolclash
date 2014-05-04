@@ -104,8 +104,9 @@ mixin smallmatchlist(results, noEvent, hidden, hideTeams)
 												span.green='+'+(Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1]))
 											else
 												span.red=Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1])
-					td(style="padding-right: 20px; width: 30px")
+					td(style="width: 50px")
 						if result.vods[0]
 							a(href= '/vods/' + result.eventUrl + '/'+ result.vodId + '/' + result.vods[0].path)
-								.showbutton
-									="Watch!"
+								.watchbuttonsmall
+						else
+							.watchbuttonsmallspacer

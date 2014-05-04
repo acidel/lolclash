@@ -1,3 +1,9 @@
+@font-face {
+	font-family: "AvantGarde Bk Bt";
+	src: url('/avant-garde-book-bt.ttf'), 
+	 url('/avant-garde-book-bt.eot');
+}
+
 
 body {
  	padding: 0;
@@ -152,8 +158,8 @@ background-image:url("/img/h3.png");
 }
 
 .logo150 {
-	width: 150px;
-	height: 150px;
+	width: 220px;
+	height: 122px;
 	margin: auto;
 }
 
@@ -197,7 +203,7 @@ body > #screencontainer { height: auto; min-height: 100%; }
 
 #content
 {
-	padding-bottom: 51px;
+	padding-bottom: 200px;
 }
 
 #wrapper
@@ -221,16 +227,18 @@ body > #screencontainer { height: auto; min-height: 100%; }
 		clear:both;
 		position: relative;
 		z-index: 10;
-		height: 51px;
-		margin-top: -51px;
-		background-image:url("/img/ftbg.png");
-		background-repeat: repeat-x;
+		height: 200px;
+		margin-top: -200px;
+		background-color: #090A0E;
+		background-repeat: repeat;
 		
 	}
 
 #footer ul
 {
-	float:right;
+	text-align: center;
+	margin-right: 200px;
+	margin-top: 20px;
 }
 
 #footer img
@@ -240,6 +248,7 @@ body > #screencontainer { height: auto; min-height: 100%; }
 
 #footer ul li { 
 
+	font-size: 18px;
 	display: inline;
 	padding-right: 20px;
 	line-height: 51px;
@@ -642,6 +651,47 @@ th {
 	font-weight: 700;
 }
 
+
+.watchbutton {
+
+	float: right;
+	text-align: right;
+	width: 79px;
+	height: 50px;
+	background-image:url('/img/button-vod-l.png');
+}
+
+.watchbuttonsmall {
+
+	float: right;
+	text-align: right;
+	width: 79px;
+	height: 33px;
+	background-image:url('/img/button-vod-s.png');
+}
+.watchbuttonsmallspacer {
+
+	float: right;
+	text-align: right;
+	width: 79px;
+	height: 33px;
+}
+
+.watchbuttonspacer {
+	float: right;
+	text-align: right;
+	width: 79px;
+	height: 33px;
+}
+
+.watchbutton:hover {
+	background-image:url('/img/button-vod-l-h.png');
+}
+
+.watchbuttonsmall:hover {
+	background-image:url('/img/button-vod-s-h.png');
+}
+
 #matchlist table, #matchlistsmall table
 {
 	border-collapse: separate;
@@ -840,6 +890,9 @@ th {
 	margin-top: 5px;
 }
 
+.right {
+	text-align: right;
+}
 .darkbox
 {
 	padding-left: 14px;
@@ -931,12 +984,13 @@ th {
 .eventlistleft
 {
 	float: left;
-	width: 250px;
+	width: 280px;
 	border-right: solid 1px #072338;
 	border-bottom: solid 1px #072338;
 	text-align: center;
-	padding: 15px;
 	min-height: 120px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .eventlistright
@@ -1208,7 +1262,7 @@ line-height: 40px;
 	margin: auto;
 	background-color: #260069;
 	height: 28px;
-	width: 60px;
+	width: 55px;
 	border: solid 1px #260069;
 	line-height: 28px;
 	font-weight: normal;

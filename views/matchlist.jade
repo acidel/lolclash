@@ -41,15 +41,14 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 						if (!noEvent)
 							img(src= '/img/flags/' + result.region.toLowerCase() + '.png')
 					td(style="width: 150px; font-size: 13px;" )
-							if (!noEvent)
-								a.grey(href= '/vods/' + result.eventUrl)
-									span.gold 
-										=result.eventName.replace(result.date.getFullYear(),"").toUpperCase()
-								<br>
-							if (result.eventSub && result.eventName.replace(result.date.getFullYear(),"").length < 20)
-									span.grey(style="font-size: 12px;")
-										=result.eventSub.toUpperCase()
-												if (result.hotness === 1)
+						if (!noEvent)
+							a.grey(href= '/vods/' + result.eventUrl)
+								span.gold 
+									=result.eventName.replace(result.date.getFullYear(),"").toUpperCase()
+							<br>
+						if ((result.eventSub && result.eventName.replace(result.date.getFullYear(),"").length < 20) || noEvent ) 
+								span.grey(style="font-size: 12px;")
+									=result.eventSub.toUpperCase()
 					td.center(style="width: 30px;")
 						if (result.hotness === 1)	
 							img(src= '/img/fire.png')
@@ -80,7 +79,7 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 														span.green='+'+(Math.round(result.eloAfter[0]- result.eloBefore[0]))
 													else
 														span.red=Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])
-					td(style="width: 60px; padding-top: 3px")
+					td(style="width: 34px; padding-top: 3px")
 						if result.teams[0] !== "?"
 							a(href= '/teams/' + result.url[0])
 								if !hideTeams
@@ -97,7 +96,7 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 								a(href="#")
 									div.spoilerbutton
 										="Show"
-					td.center(style="width: 60px; padding-top: 3px")
+					td.center(style="width: 45px; padding-top: 3px")
 						if result.teams[1] !== "?"
 							a(href= '/teams/' + result.url[1])
 								if !hideTeams
@@ -132,8 +131,10 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 													span.green='+'+(Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1]))
 												else
 													span.red=Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1])
-					td(style="padding-right: 20px; width: 30px")
+					td.right(style="width: 50px;")
 						if result.vods[0]
 							a(href= '/vods/' + result.eventUrl + '/'+ result.vodId + '/' + result.vods[0].path)
-								.showbutton
-									="Watch!"
+								.watchbutton
+						else
+							.watchbuttonspacer
+									

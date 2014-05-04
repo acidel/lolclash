@@ -39,10 +39,9 @@ block content
                                                 span.green
                                                     ="Completed"
                                 div.eventlistleft
-                                    if (tourney.logos[3] !== "Unknown.png")
-                                        div.logo150
-                                            a(href= '/vods/' + tourney.url)
-                                                div.logo150(style='background: url(/img/event-logo/3/' + tourney.logos[3] + ') no-repeat 50% 50%')
+                                    div.logo150
+                                        a(href= '/vods/' + tourney.url)
+                                            div.logo150(style='background: url(/img/event-logo/3/' + tourney.logos[3] + ') no-repeat 50% 50%')
                                 div.eventlistright
                                     h1.gold
                                         if (tourney.startDate)

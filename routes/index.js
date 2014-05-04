@@ -167,22 +167,24 @@ exports.results = function(db) {
 
         tomorrow.setDate(today.getDate()+1);
         yesterday.setDate(today.getDate()-1); 
-        thisWeek.setDate(today.getDate() - today.getDay()+1);
+        thisWeek.setDate(today.getDate() - today.getDay());
 
         var lastWeek = new Date(thisWeek);
         lastWeek.setDate(lastWeek.getDate()-7);
 
         var last2Week = new Date(thisWeek);
-        last2Week.setDate(lastWeek.getDate()-14);
+        last2Week.setDate(last2Week.getDate()-21);
         
 
+        console.log (last2Week)
+
         db.result.findbydate(
-                {date: {$gte: lastWeek, $lt: tomorrow}},
+                {date: {$gte: last2Week, $lt: tomorrow}},
                  function (err, results) {
             results.forEach (function (result) {
                 
                 //either take last 2 weeks of matches, or keep going until we get 40
-                if (totalMatches <40 && result.date > lastWeek)
+                if (totalMatches <40 && result.date > last2Week)
                 {
 
                     var matchDay = new Date(result.date)
@@ -197,7 +199,7 @@ exports.results = function(db) {
                         }
 
                         else if (matchDay < yesterday &&
-                                matchDay >= thisWeek) {
+                                matchDay > thisWeek) {
                             resultsThisWeek.push(result);
                         }
                         else if (matchDay <= thisWeek &&
@@ -205,18 +207,13 @@ exports.results = function(db) {
                             resultsLastWeek.push(result);
                         }
                         else {
-                            resultsMonth.push(result)
+                            resultsMonth.push(result);
                         }
                 }
 
-                else 
-                {
-                    done();
-                }
-
-
                 totalMatches++;
             });
+            console.log(resultsLastWeek)
             done();
         });
     };
@@ -241,7 +238,7 @@ exports.teams = function(db) {
             res.status(404).send('Not Found');
         }
         else if (req.params.id) {
-            skip = (req.params.id-1)*20;
+            skip = (req.params.id-1)*15;
             page = req.params.id;
         }
         else {
@@ -270,7 +267,7 @@ exports.teams = function(db) {
             done();
         });
         
-        db.team.findteamspage((skip),20,function (err, teams){
+        db.team.findteamspage((skip),15,function (err, teams){
             if (teams.length === 0) {
                 res.status(404).send('Not found');
             }
