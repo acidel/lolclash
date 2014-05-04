@@ -19,14 +19,13 @@ mixin teamlistsmall(teams, region)
 		-headertext = "SEA"
 	div.regionlist
 		div.regionheader
-
 		div#teamlistsmall
 			table(style=boxstyle)
 				tr
 					th(colspan=5 style=boxstyle)
 						h1.floatleft(style="margin-top: 6px; margin-right: 6px;")
 							=headertext
-						img.floatleft(src='/img/rsmall/'+region+'.png')
+						img.floatleft(src='/img/rsmall/'+region.toLowerCase()+'.png')
 
 				each team, i in teams
 					-var boxcolor

@@ -12,6 +12,7 @@ var db,
 // Setup db connection and all that gay shit
 exports.setup = function (callback) {
     mongoose.connect(process.env.MONGOHQ_URL);
+    //mongoose.connect('mongodb://localhost/asdf');
     db = mongoose.connection;
 
     db.on('error', console.error.bind(console, 'connection error:'));
@@ -30,7 +31,7 @@ exports.setup = function (callback) {
 exports.match = {
     find: match.find,
     findbydate : match.findbydate
-};
+}; 
 
 exports.team = {
     find: team.find,
@@ -60,7 +61,7 @@ exports.migrate = function () {
 
     function updateTeams () {
         fs.readFile('migrations/team.csv', 'utf8', function (err, data) {
-            var regionDataArray = data.split('\n'),
+            var regionDataArray = data.split('\r\n'),
                 i = regionDataArray.length,
                 j = 0;
 
@@ -128,7 +129,7 @@ exports.migrate = function () {
 
     function updateTourneys () {
         fs.readFile('migrations/tourney.csv', 'utf8', function (err, data) {
-            var regionDataArray = data.split('\n'),
+            var regionDataArray = data.split('\r\n'),
                 i = regionDataArray.length,
                 j = 0;
 
@@ -301,7 +302,7 @@ exports.migrate = function () {
                 teamArr.forEach(function (t) {
                     teams[t.name] = aliases[t.name] || [];
                 });
-                data.split('\n').forEach(function (line) {
+                data.split('\r\n').forEach(function (line) {
                         var arr = line.split(','),
                             matchData = {};
 
