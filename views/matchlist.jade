@@ -82,7 +82,7 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 														span.red=Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])
 					td(style="width: 60px; padding-top: 3px")
 						a(href= '/teams/' + result.url[0])
-							if hideTeams === false
+							if !hideTeams
 								div.logo40(style='background: url(/img/logo/3/' + result.logos.team1[3] + ') no-repeat 50% 50%')
 							else
 								div.logo40.team1hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
@@ -98,7 +98,7 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 										="Show"
 					td.center(style="width: 60px; padding-top: 3px")
 						a(href= '/teams/' + result.url[1])
-							if hideTeams === false
+							if !hideTeams
 								div.logo40(style='background: url(/img/logo/3/' + result.logos.team2[3] + ') no-repeat 50% 50%')
 							else
 								div.logo40.team2hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
