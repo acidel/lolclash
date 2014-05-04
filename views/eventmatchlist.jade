@@ -30,8 +30,6 @@ mixin eventmatchlist(eventResults)
 			else
 				-hideTeams = false
 
-
-
 			if (section.stage && section.stage != currentStage)
 				div.nobg(style="height: 10px;")
 				-currentStage = section.stage
@@ -45,7 +43,10 @@ mixin eventmatchlist(eventResults)
 								if section.sub
 									div(style= "min-width: 140px; display: inline-block; padding-right: 15px;" )
 										span.switchplus
-											="+ "
+											if -hideList
+												="+ "
+											else
+												="- "
 										span.gold
 											=section.sub.toUpperCase()
 									span.lb
@@ -54,7 +55,10 @@ mixin eventmatchlist(eventResults)
 											= " - "
 											=section.endDate.toDateString().slice(4,10)
 									span.grey.showhide(style="float: right; padding-right: 20px;")
-										="Click to Show"
+										if -hideList
+												="Click to Show"
+											else
+												="Click to Hide"
 									span(style="float: right; padding-right: 90px;")
 										if (section.progress === "Completed")
 											span.green
@@ -67,7 +71,7 @@ mixin eventmatchlist(eventResults)
 												=section.progress
 			if section.results.length > 6
 				div#matchlistsmall
-					+smallmatchlist(section.results, true, hideList)
+					+smallmatchlist(section.results, true, hideList, hideTeams)
 			else
 				div#matchlist
 					+matchlist(section.results, true, hideList, hideTeams)

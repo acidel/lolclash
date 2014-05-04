@@ -41,7 +41,7 @@ exports.buildcalendar = function(db) {
             res.send("Error building calendar: invalid timezone data")
          }
          else if (req.params.id) {
-                offset = (req.params.id/60) -4;
+                offset = (req.params.id/60);
          }
 
         //        

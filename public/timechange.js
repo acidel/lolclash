@@ -24,8 +24,7 @@ $(document).ready(function() {
 			matchDate.setHours(matchDate.getHours() + 12)
 		}
 
-		//go to UTC first
-		matchDate.setHours(matchDate.getHours() + 4)
+		//time already UTC
 		//offset
 		matchDate.setHours(matchDate.getHours() - (off/60))
 

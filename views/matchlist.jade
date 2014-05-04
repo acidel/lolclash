@@ -81,12 +81,13 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 													else
 														span.red=Math.round(result.eloAfter[0]) - Math.round(result.eloBefore[0])
 					td(style="width: 60px; padding-top: 3px")
-						a(href= '/teams/' + result.url[0])
-							if !hideTeams
-								div.logo40(style='background: url(/img/logo/3/' + result.logos.team1[3] + ') no-repeat 50% 50%')
-							else
-								div.logo40.team1hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
-										  data-timg='/img/logo/3/' + result.logos.team1[3])
+						if result.teams[0] !== "?"
+							a(href= '/teams/' + result.url[0])
+								if !hideTeams
+									div.logo40(style='background: url(/img/logo/3/' + result.logos.team1[3] + ') no-repeat 50% 50%')
+								else
+									div.logo40.team1hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
+											  data-timg='/img/logo/3/' + result.logos.team1[3])
 					td.grey.center(style="font-size: 15px; font-weight: bold; width: 70px;")
 						if (result.result[0] === 0 && result.result[1] === 0)
 							span(style="font-size: 24px;")
@@ -97,12 +98,13 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 									div.spoilerbutton
 										="Show"
 					td.center(style="width: 60px; padding-top: 3px")
-						a(href= '/teams/' + result.url[1])
-							if !hideTeams
-								div.logo40(style='background: url(/img/logo/3/' + result.logos.team2[3] + ') no-repeat 50% 50%')
-							else
-								div.logo40.team2hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
-										  data-timg='/img/logo/3/' + result.logos.team2[3])
+						if result.teams[1] !== "?"
+							a(href= '/teams/' + result.url[1])
+								if !hideTeams
+									div.logo40(style='background: url(/img/logo/3/' + result.logos.team2[3] + ') no-repeat 50% 50%')
+								else
+									div.logo40.team2hideimg(style='background: url(/img/logo/3/Unknown.png) no-repeat 50% 50%' 
+											  data-timg='/img/logo/3/' + result.logos.team2[3])
 					td(style="width: 130px; font-size: 17px;  text-align: left; font-weight: 500; padding-left: 10px; line-height: 16px;")
 						if (result.teams[1] === "?")
 								span.grey
