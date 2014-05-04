@@ -11,7 +11,7 @@ var db,
 
 // Setup db connection and all that gay shit
 exports.setup = function (callback) {
-    mongoose.connect('mongodb://localhost/asdf');
+    mongoose.connect(process.env.MONGOHQ_URL);
     db = mongoose.connection;
 
     db.on('error', console.error.bind(console, 'connection error:'));
