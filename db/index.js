@@ -2,6 +2,7 @@ var db,
     fs = require('fs'),
     async = require('async'),
     mongo = require('mongodb'),
+    moment = require('moment'),
     mongoose = require('mongoose'),
     match = require('./match'),
     result = require('./result'),
@@ -315,17 +316,32 @@ exports.migrate = function () {
                         if (arr.length > 1) {
                             matchData.teams = [arr[0], arr[1]];
                             matchData.teamsLower = [arr[0].toLowerCase(), arr[1].toLowerCase()];
-                            matchData.date = new Date(arr[2]);
+
+
+                            
 
                             //CONVERT TIME TO UTC HOLYSHIT DAYLIGHT
+                            //I HARDCODE 4 HOURS FORWARD AND
+                            //RUN EVERYTHING WITH A UTC COMPUTER BECAUSE
+                            //JAVASCRIPT DATES ARE HELL ON EARTTH
 
-
+                            var localDate = new Date(arr[2]);
                             if (arr[3]) {
-                                matchData.date.setHours(arr[3].split(':')[0])
+                                localDate.setHours(arr[3].split(':')[0])
                                 if (arr[3].split(':')[1]) {
-                                    matchData.date.setMinutes(arr[3].split(':')[1])
+                                    localDate.setMinutes(arr[3].split(':')[1])
                                 }
                             }
+
+                            //+4
+                            localDate.setHours(localDate.getHours()+4)
+
+                            matchData.date = new Date(localDate)
+
+
+
+
+
                             matchData.result = arr[4].split('#');
                             matchData.eventName = arr[5];
                             matchData.eventStage = arr[6];
@@ -402,8 +418,6 @@ exports.migrate = function () {
         });
     });
 };
-
-
 
 exports.calcresults = function (callback) {
 

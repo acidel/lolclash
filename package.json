@@ -11,6 +11,7 @@
     "mongodb": "*",
     "mongoose": "*",
     "async": "*",
-    "nodetime": "*"
+    "nodetime": "*",
+    "moment": "^2.6.0"
   }
 }
