@@ -528,6 +528,7 @@ table
 	border-width: 2px;
 }
 #teamlistsmall table {
+	width: 100%;
 	border-style: solid;
 	border-color: #262525;
 	border-width: 1px;
@@ -539,6 +540,10 @@ table
 .left
 {
 	text-align: left;
+}
+
+.floatleft {
+	float: left;
 }
 
 .calendartable td
@@ -861,11 +866,8 @@ th {
 	background-color: #0C1115;
 	border: solid 1px #072338;
 }
-.regionheader {
-	padding: 0;
-	margin-bottom: -1px;
-	height: 40px;
-	width: 364px;
+#teamlistsmall th {
+	background-image: none;
 	border: solid 1px #072338;
 }
 

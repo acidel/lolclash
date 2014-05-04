@@ -18,12 +18,16 @@ mixin teamlistsmall(teams, region)
 		-boxstyle = "background-color: #140B1C; border-color: #5E3D7C;";
 		-headertext = "SEA"
 	div.regionlist
-		div.regionheader(style=boxstyle)
-			img(src='/img/rsmall/'+region+'.png')
-			h1
-				=headertext
+		div.regionheader
+
 		div#teamlistsmall
 			table(style=boxstyle)
+				tr
+					th(colspan=5 style=boxstyle)
+						h1.floatleft(style="margin-top: 6px; margin-right: 6px;")
+							=headertext
+						img.floatleft(src='/img/rsmall/'+region+'.png')
+
 				each team, i in teams
 					-var boxcolor
 					if team.elo > 1850
