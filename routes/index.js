@@ -9,7 +9,8 @@ exports.index = function(db) {
                 res.render('index', {
                         'teams': teamsData,
                         'results' : resultsData,
-                        'tourneys' : tourneysData
+                        'tourneys' : tourneysData,
+                        'title' : 'LolClash - Lol VoDs & Team Rankings'
                 });
             }
         }
@@ -75,7 +76,7 @@ exports.buildcalendar = function(db) {
         function done() {
         res.render('buildcalendar', {
                 'calendarData': calendarData,
-                'userDate' : today
+                'userDate' : today,
             });
         }
 
@@ -133,6 +134,7 @@ exports.buildcalendar = function(db) {
 exports.calendar = function(db) {
 return function (req, res) {
         res.render('calendar', {
+        'title' : 'Lol eSports Calendar - LolClash'
             });
     };
 };
@@ -161,7 +163,8 @@ exports.results = function(db) {
                     'resultsYesterday' : resultsYesterday,
                     'resultsThisWeek': resultsThisWeek,
                     'resultsLastWeek': resultsLastWeek,
-                    'resultsMonth' : resultsMonth
+                    'resultsMonth' : resultsMonth,
+                    'title' : 'Recent Results - LolClash'
                 });
         }
 
@@ -257,7 +260,8 @@ exports.teams = function(db) {
                     'seaTeams' : seaTeams,
                     'teams': teamsData, 
                     'page' : page,
-                    'count' : countData
+                    'count' : countData,
+                    'title' : 'Top Lol Teams - LolClash'
                 });
             }       
         }
@@ -330,7 +334,8 @@ exports.tourneys = function(db) {
                 res.render('tourneys', {
                     'tourneys': tourneysData, 
                     'page' : page,
-                    'count' : countData
+                    'count' : countData,
+                    'title' : 'Lol Event VoDs - LolClash'
                 });
             }       
         }
@@ -390,6 +395,7 @@ exports.teamresults = function(db) {
                         'team' : teamData,
                         'graphx' : graphx.reverse(),
                         'graphy' : graphy.reverse(),
+                        'title' : teamData.nameLong + ' - LolClash' 
                     });
                 }
             }
@@ -487,7 +493,8 @@ exports.vod = function(db) {
                     'teams' : teams,
                     'eventResults': eventResults,
                     'tourneyData' : tourneyData,
-                    'vodPath' : vodName
+                    'vodPath' : vodName,
+                    'title' : 'VoD - ' + theVod.name + ' - LolClash'
                 });
 
             }
@@ -505,6 +512,8 @@ exports.vod = function(db) {
         var vodId = req.params.vodId;
         var eventId = req.params.eventId;
 
+        var theVod;
+
         db.result.find ({vodId: vodId.toLowerCase()}, function (err, results) {
             var foundVod = false;
 
@@ -514,6 +523,7 @@ exports.vod = function(db) {
                 results[0].vods.forEach(function(vod) {
                     if (vod.pathLower === vodName.toLowerCase()) {
                         foundVod = true;
+                        theVod = vod;
                     }
                 });
 
@@ -624,7 +634,8 @@ exports.eventresults = function(db) {
                 res.render('eventpage', {
                     'teams' : teams,
                     'eventResults': eventResults,
-                    'tourneyData' : tourneyData
+                    'tourneyData' : tourneyData,
+                    'title' : tourneyData.name + ' - LolClash'
                 });
 
             }
