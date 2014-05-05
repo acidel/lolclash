@@ -164,7 +164,7 @@ exports.results = function(db) {
                     'resultsThisWeek': resultsThisWeek,
                     'resultsLastWeek': resultsLastWeek,
                     'resultsMonth' : resultsMonth,
-                    'title' : 'Recent Results - LolClash'
+                    'title' : 'Recent Results & VoDs - LolClash'
                 });
         }
 
@@ -322,7 +322,7 @@ exports.tourneys = function(db) {
             res.status(404).send('Not Found');
         }
         else if (req.params.id) {
-            skip = (req.params.id-1)*5;
+            skip = (req.params.id-1)*6;
             page = req.params.id;
         }
         else {
@@ -346,7 +346,7 @@ exports.tourneys = function(db) {
             done();
         });
         
-        db.tourney.findtourneyspage((skip),5,function (err, tourneys){
+        db.tourney.findtourneyspage((skip),6,function (err, tourneys){
             if (tourneys[0]) {
                 tourneysData = tourneys;
                 done();

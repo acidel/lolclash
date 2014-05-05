@@ -1,6 +1,8 @@
 include header
 include footer
 include matchlist
+include adright
+include adh
 extends layout
 block content
 	script(src="/hidespoiler.js" type="text/javascript")
@@ -86,7 +88,9 @@ block content
 								h1
 									="MONTHLY"
 							+matchlist(resultsMonth)
+					+adh()
 				div#rightcontainer
-					div#ad1(style='background-image:url("/img/v1.png")')
+					div#ad1
+						+adright()
 	+footer()
 

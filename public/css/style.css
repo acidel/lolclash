@@ -643,16 +643,16 @@ th {
 }
 #ad1
 {
+	width: 160px;
 	margin: auto;
 	margin-bottom: 21px;
-	background-color: #090A0E;
 }
 
 #adh
 {
 	margin: auto;
-	margin-bottom: 7px;
-	background-color: #090A0E;
+	width: 728px;
+	margin-bottom: 6px;
 }
 
 .bold

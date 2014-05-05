@@ -1,6 +1,7 @@
 include header
 include footer
 include matchlist
+include adh
 extends layout
 block content
 	div#screencontainer
@@ -20,9 +21,11 @@ block content
 							="Calendar"
 					script(src='/buildcalendar.js' type='text/javascript' charset='utf8')
 					div.grey(style="line-height: 30px")="Times are in your local Timezone"
-					div#lolcalendar
+					div#lolcalendar.contentlarge
 						div(style="height: 100px;")
 						div.center.gold
 							="Detecting Timezone..."
+					div#adh
+						+adh()
 	+footer()
 

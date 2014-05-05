@@ -73,20 +73,21 @@ block content
 							a.center(href='/vods/')
 								div.showmore.center.dbg3
 									="All Event VoDs..."
-					div#adh
-						+adh()
 					div.contentlargeheader.headerborder
 						h1 RECENT MATCHES
 					div#matchlist.smallmargin.headerborder
 						+matchlist(results)
-					h1.center
+					h1.center.smallmargin
 							a.center(href='/results/')
 								div.showmore.center.dbg2
 									="All recent results..."
+					div#adh
+						+adh()
 				div#rightcontainer
+					+popular()
 					div#ad1
 						+adright()
-					+popular()
+
 	+footer()
 
 

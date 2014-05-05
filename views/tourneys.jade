@@ -2,6 +2,9 @@ include header
 include footer
 include listbrowser
 include popular
+include adright
+include adrights
+include adh
 extends layout
 block content
     div#screencontainer
@@ -19,7 +22,7 @@ block content
                         div.contenthugeheader.headersplit.smallmargin.hbg3
                             h1
                                 ="Event VoDs"
-                        +listbrowser('/vods/', count, 5, page)
+                        +listbrowser('/vods/', count, 6, page)
                         div.smallmargin
                         each tourney, i in tourneys
                             div.tourneycontainer.smallmargin
@@ -57,8 +60,12 @@ block content
                                 div.clearboth
 
                         div.contentlarge
-                        +listbrowser('/vods/', count, 5, page)
+                        +listbrowser('/vods/', count, 6, page)
+                        div.smallmargin
+                        div#adh
+                            +adh()
                     div#rightcontainer
-                        div#ad1(style='background-image:url("/img/v1.png")')
                         +popular()
+                        div#ad1
+                            +adright()
     +footer()

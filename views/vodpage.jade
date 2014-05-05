@@ -3,6 +3,8 @@ include footer
 include matchlist
 include eventmatchlist
 include popular
+include adh
+include adrights
 extends layout
 block content
 	div#screencontainer
@@ -69,8 +71,14 @@ block content
 											h1.white
 												=vod.name + " "
 					+eventmatchlist(eventResults)
+					div#adh
+						+adh()
 				div#rightcontainer
-					div#ad1(style='background-image:url("/img/v1.png")')
+					div#ad1
+						+adrights()
 					+popular()
+					div#ad1
+						+adrights()
+
 	+footer()
 
