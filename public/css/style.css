@@ -1,7 +1,7 @@
 @font-face {
 	font-family: "AvantGarde Bk Bt";
 	src: url('/avant-garde-book-bt.ttf'), 
-	 url('/avant-garde-book-bt.eot');
+	 url('/avant-garde-book-bt.eot?#iefix') format('embedded-opentype');
 }
 
 
@@ -268,7 +268,7 @@ body > #screencontainer { height: auto; min-height: 100%; }
 #menudiv {
 
 	width: 960px;
-	padding-right: 30px;
+	padding-right: 20px;
 	margin: auto;
 }
 #menu ul
