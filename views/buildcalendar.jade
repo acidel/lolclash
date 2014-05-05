@@ -10,7 +10,7 @@ div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
 						td(style="width:40px; border-style: none;")
 						-for (var j=0; j < 7; j++)
 							td.center(style="width: 120px;")
-								if (calendarData[i+j].date.getDate() === today.getDate())
+								if (calendarData[i+j].date.getDate() === userDate.getDate())
 									h1.white
 										=calendarData[i+j].date.toDateString().slice(0,8)
 										=calendarData[i+j].date.getDate()

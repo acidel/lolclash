@@ -75,6 +75,7 @@ exports.buildcalendar = function(db) {
         function done() {
         res.render('buildcalendar', {
                 'calendarData': calendarData,
+                'userDate' : today
             });
         }
 
