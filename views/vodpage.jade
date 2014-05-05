@@ -4,7 +4,7 @@ include matchlist
 include eventmatchlist
 include popular
 include adh
-include adrights
+include adright
 extends layout
 block content
 	div#screencontainer
@@ -71,14 +71,12 @@ block content
 											h1.white
 												=vod.name + " "
 					+eventmatchlist(eventResults)
+					div(style="height: 50px")
 					div#adh
 						+adh()
 				div#rightcontainer
 					div#ad1
-						+adrights()
-					+popular()
-					div#ad1
-						+adrights()
+						+adright()
 
 	+footer()
 

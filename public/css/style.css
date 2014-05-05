@@ -264,13 +264,17 @@ body > #screencontainer { height: auto; min-height: 100%; }
 		margin: 0 0 ;
 		padding: 0 0;
 	}
+
+#menudiv {
+
+	width: 960px;
+	padding-right: 30px;
+	margin: auto;
+}
 #menu ul
 	{
 		list-style-type: none;
 		font-size: 20px;
-		padding-right: 460px;
-		padding-left: 6px;
-		text-align: center;
 		margin: 0 0 ;
 	}
 
