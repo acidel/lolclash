@@ -644,9 +644,14 @@ th {
 #ad1
 {
 	margin: auto;
-	width: 120px;
-	height:600px;
 	margin-bottom: 21px;
+	background-color: #090A0E;
+}
+
+#adh
+{
+	margin: auto;
+	margin-bottom: 7px;
 	background-color: #090A0E;
 }
 

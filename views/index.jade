@@ -4,6 +4,7 @@ include teamlist
 include matchlist
 include popular
 include adright
+include adh
 extends layout
 block content
 	script(src="/hidespoiler.js" type="text/javascript")
@@ -72,6 +73,8 @@ block content
 							a.center(href='/vods/')
 								div.showmore.center.dbg3
 									="All Event VoDs..."
+					div#adh
+						+adh()
 					div.contentlargeheader.headerborder
 						h1 RECENT MATCHES
 					div#matchlist.smallmargin.headerborder
