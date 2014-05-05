@@ -83,21 +83,24 @@ ul
 }
 
 .hbg1 {
-background-image:url("/img/h1a.png");
+background-image:url("/img/h6a.png");
 }
 
 .hbg2 {
-background-image:url("/img/h2a.png");
+background-image:url("/img/h7a.png");
 }
 
 .hbg3 {
-background-image:url("/img/h3a.png");
+background-image:url("/img/h6a.png");
 }
 
 .hbg4 {
-	background-image:url("/img/h4a.png");
+	background-image:url("/img/h8a.png");
 }
 
+.hbgl {
+	background-image:url("/img/hl.png");
+}
 .dbg1 {
 background-image:url("/img/h1.png");
 }

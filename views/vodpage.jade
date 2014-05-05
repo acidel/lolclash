@@ -24,7 +24,7 @@ block content
 							a(href= '/vods/' + tourneyData.url + '/' +vodData.vodId+ '/' + vodPath)
 								=vodPath.replace(/-/g, " ")
 
-					div.contenthugeheader.headersplit.smallmargin.hbg2
+					div.contenthugeheader.headersplit.smallmargin.hbg4
 						h1
 							=tourneyData.name
 					div.darkbox.smallmargin
@@ -33,12 +33,14 @@ block content
 							=": "
 							span.white
 								img(src= '/img/logo/3/'+ vodData.logos.team1[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
-								=vodData.teamsMed[0]
+								a(href='/teams/'+vodData.url[0])
+										=vodData.teamsMed[0]
 								span.yellow
 									= " (" + Math.round(vodData.eloBefore[0]) + ")"
 								span.grey
 									=" vs. "
-								=vodData.teamsMed[1]
+								a(href='/teams/'+vodData.url[1])
+										=vodData.teamsMed[1]
 								span.yellow
 									= " (" + Math.round(vodData.eloBefore[1]) + ")"
 								img(src= '/img/logo/3/'+ vodData.logos.team2[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
