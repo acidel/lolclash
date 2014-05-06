@@ -54,7 +54,7 @@ block content
 					each vod, i in vodData.vods
 						if vod.pathLower === vodPath.toLowerCase()
 							if (vod.url.indexOf("youtube") !== -1)
-								iframe(width ="760" height="428" src=vod.url.replace("watch?v=", "embed/") frameborder="0" allowfullscreen)
+								iframe(width ="760" height="428" src=vod.url.replace("watch?v=", "embed/").replace('&t=', '?t=') frameborder="0" allowfullscreen)
 								-var popupUrl = vod.url.replace("watch?v=", "watch_popup?v=")
 								a(href="#" onclick="javascript:void window.open('#{popupUrl}','1397723891825','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=0,resizable=1,left=0,top=0');return false;")
 									.popoutbutton
