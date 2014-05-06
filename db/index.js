@@ -12,7 +12,7 @@ var db,
 
 // Setup db connection and all that gay shit
 exports.setup = function (callback) {
-    mongoose.connect(process.env.MONGOHQ_URL);
+    mongoose.connect(process.env.MONGOLAB_URI);
     //mongoose.connect('mongodb://localhost/asdf');
     db = mongoose.connection;
 
