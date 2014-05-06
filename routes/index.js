@@ -494,7 +494,8 @@ exports.vod = function(db) {
                     'eventResults': eventResults,
                     'tourneyData' : tourneyData,
                     'vodPath' : vodName,
-                    'title' : 'VoD - ' + theVod.name + ' - LolClash'
+                    'title' : 'VoD - ' +vodName.replace(/-/g, " ") + ' - ' 
+                    + tourneyData.name +' - LolClash'
                 });
 
             }

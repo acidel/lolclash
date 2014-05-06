@@ -133,8 +133,11 @@ mixin matchlist(results, noEvent, hidden, hideTeams)
 													span.red=Math.round(result.eloAfter[1]) - Math.round(result.eloBefore[1])
 					td.right(style="width: 50px;")
 						if result.vods[0]
-							a(href= '/vods/' + result.eventUrl + '/'+ result.vodId + '/' + result.vods[0].path)
-								.watchbutton
+							if (result.vods[0].url.indexOf("ongamenet") !== -1)
+								a(href= '/vods/' + result.eventUrl + '/'+ result.vodId + '/' + result.vods[0].path)
+									.watchbuttonpaid
+							else
+								a(href= '/vods/' + result.eventUrl + '/'+ result.vodId + '/' + result.vods[0].path)
+									.watchbutton
 						else
 							.watchbuttonspacer
-									

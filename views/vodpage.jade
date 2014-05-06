@@ -7,6 +7,7 @@ include adh
 include adright
 extends layout
 block content
+	script(src='/vod.js' type='text/javascript' charset='utf8')
 	div#screencontainer
 		div#content
 			+header()
@@ -34,18 +35,22 @@ block content
 							=vodData.eventSub
 							=": "
 							span.white
-								img(src= '/img/logo/3/'+ vodData.logos.team1[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
+								
 								a(href='/teams/'+vodData.url[0])
 										=vodData.teamsMed[0]
-								span.yellow
-									= " (" + Math.round(vodData.eloBefore[0]) + ")"
+								span.yellow.small
+									= " (" + Math.round(vodData.eloBefore[0]) + ") "
+								a(href='/teams/'+vodData.url[0])
+									img(src= '/img/logo/3/'+ vodData.logos.team1[3] style="position: relative; top: 9px; padding-right: 5px;")
 								span.grey
 									=" vs. "
 								a(href='/teams/'+vodData.url[1])
+									img(src= '/img/logo/3/'+ vodData.logos.team2[3] style="position: relative; top: 9px; padding-right: 5px;")
+								a(href='/teams/'+vodData.url[1])
 										=vodData.teamsMed[1]
-								span.yellow
+								span.yellow.small
 									= " (" + Math.round(vodData.eloBefore[1]) + ")"
-								img(src= '/img/logo/3/'+ vodData.logos.team2[3] height= "33" width = "33" style="position: relative; top: 8px; padding-right: 5px;")
+							
 					each vod, i in vodData.vods
 						if vod.pathLower === vodPath.toLowerCase()
 							if (vod.url.indexOf("youtube") !== -1)
@@ -55,11 +60,14 @@ block content
 									.popoutbutton
 										h1
 											="POPUP PLAYER"
+							else if (vod.url.indexOf("ongamenet") !== -1)
+								a(href=vod.url)
+									div.faketwitch
+										h1.grey.huge
 					div.contentlargeheader.headerborder.smallmargin(style="margin-top: 15px;")
 						h1
 							="OPTIONS"
 					if vodData.vods.length > 1
-						-var rows = Math.ceil(vodData.vods.length/5)*40
 						div#gameslist.contentlarge(style="height: #{rows}px")
 							each vod, i in vodData.vods
 								.videobutton
@@ -70,6 +78,7 @@ block content
 										a(href=vod.path)
 											h1.white
 												=vod.name + " "
+						div.clearboth.contentlarge
 					+eventmatchlist(eventResults)
 					div(style="height: 50px")
 					div#adh

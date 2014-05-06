@@ -70,6 +70,19 @@ ul
 
 }
 
+.faketwitch {
+	width: 761px;
+	height: 429px;
+background-image:url("/img/fake-twitch.png");
+}
+
+
+.faketwitch:hover {
+	width: 761px;
+	height: 429px;
+background-image:url("/img/fake-twitch-h.png");
+}
+
 .headersplit h1{
 	display: inline-block;
 	padding-right: 31px;
@@ -158,6 +171,15 @@ background-image:url("/img/h3.png");
 	width: 100%;
 	height: 75px;
 	margin: auto;
+}
+
+.flag64 {
+	float: right;
+	width: 64px;
+	margin-right: 10px;
+	height: 64px;
+	margin: auto;
+	opacity:0.8;
 }
 
 .logo150 {
@@ -665,7 +687,7 @@ th {
 }
 
 
-.watchbutton {
+.watchbutton, .watchbuttonpaid {
 
 	float: right;
 	text-align: right;
@@ -674,13 +696,21 @@ th {
 	background-image:url('/img/button-vod-l.png');
 }
 
-.watchbuttonsmall {
+.watchbuttonpaid {
+		background-image:url('/img/moneybutton-vod-l.png');
+}
+
+.watchbuttonsmall, .watchbuttonsmallpaid {
 
 	float: right;
 	text-align: right;
 	width: 79px;
 	height: 33px;
 	background-image:url('/img/button-vod-s.png');
+}
+
+.watchbuttonsmallpaid {
+		background-image:url('/img/moneybutton-vod-s.png');
 }
 .watchbuttonsmallspacer {
 
@@ -703,6 +733,14 @@ th {
 
 .watchbuttonsmall:hover {
 	background-image:url('/img/button-vod-s-h.png');
+}
+
+.watchbuttonpaid:hover {
+	background-image:url('/img/moneybutton-vod-l-h.png');
+}
+
+.watchbuttonsmallpaid:hover {
+	background-image:url('/img/moneybutton-vod-s-h.png');
 }
 
 #matchlist table, #matchlistsmall table
@@ -989,6 +1027,10 @@ th {
 	margin-bottom: 13px;
 }
 
+.small {
+	font-size: 17px;
+}
+
 #teamgrid a
 {
 	text-decoration: none;
@@ -1239,7 +1281,7 @@ line-height: 40px;
 
 .videobutton {
 	float: left;
-	width: 134px;
+	width: 130px;
 	height: 48px;
 	border-style: solid;
 	border-color: #072338;
