@@ -98,14 +98,17 @@ exports.migrate = function () {
                 logos[0] = "Invalid";
                 for (var i=1;i<=5;i++) {
                     logos[i] = "Unknown.png"
-                    if (logosDir[i].indexOf(nameLong.replace(/ /g, "-") + '.png') !== -1) {
-                        logos[i] = (nameLong.replace(/ /g, "-") + '.png')
+                    if (logosDir[i].indexOf(nameLong.replace(/[\. ,:-]+/g, "-") + '.png') !== -1) {
+                        logos[i] = (nameLong.replace(/[\. ,:-]+/g, "-") + '.png')
                     }
                     else if (logosDir[i].indexOf(nameMed.replace(/ /g, "-") + '.png') !== -1) {
-                        logos[i] = (nameMed.replace(/ /g, "-") + '.png')
+                        logos[i] = (nameMed.replace(/[\. ,:-]+/g, "-") + '.png')
                     }
                     else if (logosDir[i].indexOf(nameShort.replace(/ /g, "-") + '.png') !== -1) {
-                        logos[i] = (nameShort.replace(/ /g, "-") + '.png')
+                        logos[i] = (nameShort.replace(/[\. ,:-]+/g, "-") + '.png')
+                    }
+                    else if (logosDir[i].indexOf(data[0].replace(/ /g, "-") + '.png') !== -1) {
+                        logos[i] = (data[0].replace(/[\. ,:-]+/g, "-") + '.png')
                     }
                 }
 
@@ -431,6 +434,20 @@ exports.calcresults = function (callback) {
 
     match.findbydate({}, function (err, data) {
 
+        var predictGraph = []
+
+        for (var i=0;i<=20;i++) {
+            var newPlot = {};
+            newPlot.predict = 5*i;
+            newPlot.total = 0;
+            newPlot.win = 0;
+            newPlot.loss = 0;
+            newPlot.percent = 0;
+            console.log(i)
+            predictGraph.push(newPlot)
+        }
+
+
         var correctCount = 0;
         var wrongCount = 0;
         var tourneys = [];
@@ -470,6 +487,12 @@ exports.calcresults = function (callback) {
                          console.log("...done, exit!")
                          console.log ("correct = " + correctCount + "  wrong= " + wrongCount + " %" +  correctCount/(correctCount+wrongCount))
                          console.log("Total games tracked - " + totalGames)
+                                 for (var i=0;i<=20;i++) {
+                                    var newPlot = {};
+                                        predictGraph[i].percent = 
+                                        predictGraph[i].win / predictGraph[i].total
+                                }
+                         console.log (predictGraph)
                          process.exit();
                     }
 
@@ -568,6 +591,7 @@ exports.calcresults = function (callback) {
             function runmatch (callback3) {
                 var t1k = 52,
                 t2k = 52;
+
 
                 totalGames++;
 
@@ -740,6 +764,35 @@ exports.calcresults = function (callback) {
                         resultData.hotness = 1;
                     }
 
+
+
+                    //ANALYTICS
+                    var Er1 = Math.pow(10, ((team2Elo-team1Elo)/400));
+                    var Er2 = Math.pow(10, ((team1Elo-team2Elo)/400));
+
+                    var Er1= (1/(1+Er1))
+                    var Er2= (1/(1+Er2))
+
+                    
+                    if (team1Games>=15 && team2Games >=15)
+                    {
+                    for (var i = 0; i < m.result[0]; i++) {
+                        predictGraph[Math.round((Er1*100)/5)].win++;
+                        predictGraph[Math.round((Er2*100)/5)].loss++;
+                        predictGraph[Math.round((Er1*100)/5)].total++;
+                        predictGraph[Math.round((Er2*100)/5)].total++;
+                    }
+
+                    for (var i = 0; i < m.result[1]; i++) {
+                        predictGraph[Math.round((Er1*100)/5)].loss++;
+                        predictGraph[Math.round((Er2*100)/5)].win++;
+                        predictGraph[Math.round((Er1*100)/5)].total++;
+                        predictGraph[Math.round((Er2*100)/5)].total++;
+                    }
+                }
+                    
+
+
                     if (m.result[0] > m.result[1] && team1Elo > team2Elo && m.result[0] + m.result[1] > 0) {
                         correctCount++;
 
@@ -751,6 +804,7 @@ exports.calcresults = function (callback) {
                     else {
                         wrongCount++;
                     }
+                    //
 
                     console.log("")
                     console.log (team1Wins + "\t" + team2Wins + "\t" + team1Games + "\t" + team2Games +"\t" + m.region[0]);

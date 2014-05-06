@@ -1,0 +1,88 @@
+include header
+include footer
+include matchlist
+include adh
+include adright
+include popular
+extends layout
+block content
+	div#screencontainer
+		div#content
+			+header()
+			div#wrapper
+				div#leftcontainer
+					div#path
+						h1
+							a(href= '/')
+								="Home"
+							=" / "
+							a(href= '/Creating-a-rating-system-for-LoL')
+								="Creating a rating system for LoL"
+					div.contenthugeheader.headersplit.hbgl.contentlarge
+						h1
+							="Behind the Rankings..."
+					div.article
+						h1.yellow
+							="Creating a rating system for League of Legends"
+						p
+							="LoLClash began as a small personal project, driven by an interest in international eSports.  Somewhere along the line things got out of hand..."
+						p
+							="LolClash's ranking system is based on the "
+							a.lb(href="http://en.wikipedia.org/wiki/Elo_rating_system")
+								="Elo rating system,"
+							="which is a widely used method to calculate skill levels in competitive games. Elo was originally designed for chess, and has been adapted for use in many games/sports, including LoL itself!"
+						p
+							="Ratings began with the raw Elo formula.  Using the exact method used in chess proved to be a pretty mediocre way of predicting competitive LoL matches. Many variations to the formula were tested, but only a few small changes were needed to greatly improve its accuracy."
+						h2.blueh
+							="1. Increased k factor ( 16 -> 52 )"
+						p
+							="In the Elo formula, the k factor determines the volatility(swingyness) of the ratings.  16 is the value used in chess rankings, but a higher k factor proved to be much more accurate in predicting League of Legends matches.  Chess is a game where ability is gradually gained, and rarely suffers great losses.  League of Legends has seen teams go from nearly best in the world to non-threats in the matter of weeks!  K factors as low as 16 and as high as 100 were tested in the making of the system, a value of 52 proved to have a good mixture of accuracy and stability."
+						h2.blueh
+							="2. Placement Matches"
+						p
+							="It is very common in ranking systems to implement placement matches, where rating gains/losses are increased for new competitors.  This is important in LoL, it hurts the system if it takes an entire LCS split to accurately rate a team."
+						p
+							="A team will experience a 50% increase in gains/losses in their first 15 matches against ranked teams"
+						h2.blueh
+							="3. International Match Weighting"
+						p
+							="The regional nature of competition in League of Legends means that international tournaments do not occur frequently. This was a problem. An increased sample size of international matches would fix this problem, but there were simply not enough matches. To simulate extra international matches, rating gains/losses in 2013 were doubled for international tournaments. To maintain rating stability in the future, international matches will not have increased weighting."
+						img.smallmargin.ratinggraph(src='/img/ratinggraph.png')
+						p
+							="Above is a graph showing how LolClash rating performs at predicting match outcomes.  Predictions become a bit innacurate with extreme predictions, as it's pretty hard to have a 90%+ winrate in a LoL match.  Otherwise, LoLClash rating seems to perform pretty well!"
+
+						div.contentlarge
+						h1.yellow
+							="FAQ"
+						h2.blueh
+							="Your ratings are wrong! X team is above Y team! What a joke!!!!!!"
+						p
+							="LoLClash's rating system is obviously not perfect, and will never be.  It is definitely much poorer at predicting international competition (low sample size), and suffers with poor tournament formats.  If it looks like a team is WAY off (not just 20-30 rating), take a look at their team page! Have they played very few matches? Have they recently dropped a game to a low rated team?  Have they recently had a small winning/losing streak? LolClash's system has no soul, in-game play and roster swaps will have no affect on a team's rating.  Only results matter!"
+						p
+							="Please use this site as an opportunity to learn more about your favorite teams, instead of getting upset that magic internet numbers don't match your opinions."
+						h2.blueh
+							="What about team roster swaps? Team renames? Team transfers?"
+						p
+							="In order to maintain fairness and increase accuracy, resets on team ratings due to roster changes are applied very sparingly.  If it was at all possible to transfer a team's rating to a new team, this option was usually chosen. If roster changes improve a team, the rating will rise.  If a team suffers poor roster moves, their rating will drop.  In select cases where entire teams are removed, replaced, or renamed a new team was added.  Whether or not to create a new team was judged on a case-by-case basis."
+						p
+							="If you browse to a team page you will see any past aliases that are included in a team's rating history."
+						h2.blueh
+							="How do you choose which events are added?"
+						p
+							="Events are added to LoLClash on a case-by-case basis.  Tournaments that are part of the World Championship Circuit and their qualifiers were nearly always added.  Amateur tournaments are generally not included in the rankings, but will definitely be considered in the future as the competitive scene expands.  Events not on the main LoL circuit are added if enough of the teams are officially ranked (have played over 15 matches).  Some events are added to the LoLClash database, but the results are not included within the ranking system, these simply show no rating change."
+						h2.blueh
+							="Your data / Team swaps / Event info / Website is WRONG!!!!!"
+						p
+							="Not really a question, but if something is super-wrong or broken please shoot me an email at "
+							a.lb(href="mailto:Dylan@LoLClash.com")
+								="Dylan@LoLClash.com!"
+							=" I've tried my best but I'm sure there's stuff around that's incorrect/broken, I'll look into adding forms/buttons to flag bad info in the future."
+
+					div#adh
+						+adh()
+				div#rightcontainer
+					+popular()
+					div#ad1
+						+adright()
+	+footer()
+

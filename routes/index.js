@@ -10,7 +10,7 @@ exports.index = function(db) {
                         'teams': teamsData,
                         'results' : resultsData,
                         'tourneys' : tourneysData,
-                        'title' : 'LolClash - Lol VoDs & Team Rankings'
+                        'title' : 'LoLClash - LoL VoDs & Team Rankings'
                 });
             }
         }
@@ -134,7 +134,15 @@ exports.buildcalendar = function(db) {
 exports.calendar = function(db) {
 return function (req, res) {
         res.render('calendar', {
-        'title' : 'Lol eSports Calendar - LolClash'
+        'title' : 'LoL eSports Calendar - LoLClash'
+            });
+    };
+};
+
+exports.ratingarticle = function(db) {
+return function (req, res) {
+        res.render('ratingarticle', {
+        'title' : 'Creating a rating system for LoL - LoLClash'
             });
     };
 };
@@ -164,7 +172,7 @@ exports.results = function(db) {
                     'resultsThisWeek': resultsThisWeek,
                     'resultsLastWeek': resultsLastWeek,
                     'resultsMonth' : resultsMonth,
-                    'title' : 'Recent Results & VoDs - LolClash'
+                    'title' : 'Recent Results & VoDs - LoLClash'
                 });
         }
 
@@ -261,7 +269,7 @@ exports.teams = function(db) {
                     'teams': teamsData, 
                     'page' : page,
                     'count' : countData,
-                    'title' : 'Top Lol Teams - LolClash'
+                    'title' : 'Top LoL Teams - LoLClash'
                 });
             }       
         }
@@ -335,7 +343,7 @@ exports.tourneys = function(db) {
                     'tourneys': tourneysData, 
                     'page' : page,
                     'count' : countData,
-                    'title' : 'Lol Event VoDs - LolClash'
+                    'title' : 'LoL Event VoDs - LoLClash'
                 });
             }       
         }
@@ -395,7 +403,7 @@ exports.teamresults = function(db) {
                         'team' : teamData,
                         'graphx' : graphx.reverse(),
                         'graphy' : graphy.reverse(),
-                        'title' : teamData.nameLong + ' - LolClash' 
+                        'title' : teamData.nameLong + ' - LoLClash' 
                     });
                 }
             }
@@ -495,7 +503,7 @@ exports.vod = function(db) {
                     'tourneyData' : tourneyData,
                     'vodPath' : vodName,
                     'title' : 'VoD - ' +vodName.replace(/-/g, " ") + ' - ' 
-                    + tourneyData.name +' - LolClash'
+                    + tourneyData.name +' - LoLClash'
                 });
 
             }
@@ -636,7 +644,7 @@ exports.eventresults = function(db) {
                     'teams' : teams,
                     'eventResults': eventResults,
                     'tourneyData' : tourneyData,
-                    'title' : tourneyData.name + ' - LolClash'
+                    'title' : tourneyData.name + ' - LoLClash'
                 });
 
             }

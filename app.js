@@ -35,6 +35,7 @@ if ('development' == app.get('env')) {
 
 db.setup(function () {
 	app.get('/', routes.index(db));
+	app.get('/Creating-a-rating-system-for-LoL', routes.ratingarticle(db));
 	app.get('/ajax/loadcalendar/:id', routes.buildcalendar(db) );
 	app.get('/calendar', routes.calendar(db));
 	app.get('/calendar/time/:id', routes.calendar(db));

@@ -244,7 +244,29 @@ body > #screencontainer { height: auto; min-height: 100%; }
 		background-image:url("/img/t1.png");
 		background-repeat:no-repeat;
 		background-position: left center;
-		
+
+	}
+
+	#footerlogo
+	{
+		height: 48px;
+		width: 200px;
+		background-image:url("/img/t1s.png");
+		background-repeat:no-repeat;
+		background-position: left center;
+		    margin: 0 auto;
+		    padding-right: 0px;
+	}
+	.footertext {
+	text-align: center;
+	padding-top: 20px;
+	margin-right: 0px;
+	}
+
+#headerlogo
+	{
+		height: 77px;
+		width: 500px;
 	}
 
 #footer
@@ -508,6 +530,10 @@ table
 	color: #018FFD;
 }
 
+.blueh
+{
+	color: #30A5FF;
+}
 .noborder
 {
 	border-style: none;
@@ -540,6 +566,12 @@ table
 {
 	color: #88CBFF;
 }
+
+.ratinggraph {
+	width: 576px;
+    margin-left: 92px;
+}
+
 
 .lp
 {
@@ -700,6 +732,23 @@ th {
 		background-image:url('/img/moneybutton-vod-l.png');
 }
 
+.article p {
+	font-size: 15px;
+	line-height: 19px;
+	margin-bottom: 7px;
+}
+
+.article h1 {
+	font-size: 27px;
+	margin-bottom: 5px;
+}
+
+.article h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	margin-bottom: 4px;
+}
 .watchbuttonsmall, .watchbuttonsmallpaid {
 
 	float: right;
