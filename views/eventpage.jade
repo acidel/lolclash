@@ -45,13 +45,7 @@ block content
 										="Completed"
 					if tourneyData.related[0]
 						div.darkbox(style="margin-top: 1px;")
-								each rel, i in tourneyData.related
-									span(style="padding-right: 20px;")
-										a.lb(href= '/vods/' + rel.url)
-											=rel.name
-									if tourneyData.related.length > 1
-										span.gold(style="padding-right: 20px")
-											="|"
+
 					div.tourneycontainersmall.contentlarge
 						div.eventlistleft
 							div.logo150(style='background: url(/img/event-logo/3/' + tourneyData.logos[3] + ') no-repeat 50% 50%')
