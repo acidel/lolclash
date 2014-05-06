@@ -936,6 +936,11 @@ th {
 	height: 84px;
 }
 
+.socialbutton {
+	padding-top: 2px;
+	margin-bottom: -7px;
+}
+
 .filtertable ul
 {
 	margin: 0;

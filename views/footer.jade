@@ -1,11 +1,14 @@
 mixin footer
+	include donate
 	div#footer
 		div.footertext.grey
 			="Interested in where the numbers come from? "
 			a.lb(href="/Creating-a-rating-system-for-LoL")
 				="Click here"
-		div.footertext.grey.smallmargin
+		div.footertext.grey
 			="Broken Stuff, Questions or comments? Email me! "
 			a.lb(href="mailto:Dylan@LoLClash.com")
 				="Dylan@LoLClash.com"
+		div.footertext.grey(style="margin-left: 50px;")
+			+donate()
 		div#footerlogo

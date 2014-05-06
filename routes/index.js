@@ -61,7 +61,7 @@ exports.buildcalendar = function(db) {
 
         
         last2Week.setDate(thisWeek.getDate()-14);
-        next4Week.setDate(thisWeek.getDate()+28);
+        next4Week.setDate(thisWeek.getDate()+21);
         curDay = last2Week
 
         var calendarData = [];
@@ -188,8 +188,6 @@ exports.results = function(db) {
         last2Week.setDate(last2Week.getDate()-21);
         
 
-        console.log (last2Week)
-
         db.result.findbydate(
                 {date: {$gte: last2Week, $lt: tomorrow}},
                  function (err, results) {
@@ -225,7 +223,6 @@ exports.results = function(db) {
 
                 totalMatches++;
             });
-            console.log(resultsLastWeek)
             done();
         });
     };

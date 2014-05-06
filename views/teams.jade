@@ -23,6 +23,10 @@ block content
                         div.contenthugeheader.headersplit.hbg2(style="margin-bottom: 6px;")
                             h1
                                 ="Teams"
+                        div.grey.smallmargin
+                            ="Teams are added after 15 ranked games - for more information on the LoLClash rankings "
+                            a(href="/Creating-a-rating-system-for-LoL")
+                                ="Click here"
                         +teamlist(teams, page)
                         div.smallmargin
                         +listbrowser('/teams/', count, 15, page)
