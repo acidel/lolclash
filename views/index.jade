@@ -13,62 +13,33 @@ block content
 		div#content
 			+header()
 			div#wrapper
+				div
+					div#landing
 				div#leftcontainer
-					div#newsheader.contentlarge
-						a(href="/Creating-a-rating-system-for-LoL")
-							div#feature(style='background-image:url("/img/ft1.png")')
-								.featureheader
-									h1
-										="Behind the Rankings..."
-									h2
-										="Creating a rating system for League of Legends"
-						a(href="/calendar")
-							div#featureright(style='background-image:url("/img/ftr1.png")')
-								.featureheader
-									h3
-										="Calendar"
-									h2
-										="Event Schedule"
-						a(href="/vods/All-Star-2014")
-							div#featureright(style='background-image:url("/img/ftr2.png")')
-								.featureheader
 					div.contentlargeheader.headerborder.smallmargin
-						h1 CURRENT RANKINGS
-					+teamlist(teams,1)
-					h1.center.smallmargin
-						a.center(href='/teams/')
-							div.showmore.center.dbg1(style="font-size: 18px;")
-								="See full rankings..."
-					div.contentlargeheader.headerborder.smallmargin
-						h1 TOURNAMENTS
+						h1 EVENT VODS
 					div#tourneylist.smallmargin
 						ul
 							each tourney, i in tourneys
-								-var boxclass
-								if i === 0
-									-boxclass = "tourneybox1"
-								else if i === 1
-									-boxclass = "tourneybox2"
-								else if i === 2
-									-boxclass = "tourneybox3"
-								else if i === 3
-									-boxclass = "tourneybox3"
-								else if i === 4
-									-boxclass = "tourneybox1"
-								else if i === 5
-									-boxclass = "tourneybox2"
-								a(href='/vods/' + tourney.url)
-									li(class=boxclass)
+									li
 										div.tbox1
+											a(href='/vods/' + tourney.url)
+												div.logo150.tbox1(style='background: url(/img/event-logo/3/' + tourney.logos[3] + ') no-repeat 50% 50%')
+										div.tbox2
 											h1
 												=tourney.name.slice(0,21)
-										if tourney.logos[2] !== 'Unknown.png'
-											div.tbox2(style='background: url(/img/event-logo/2/' + tourney.logos[2] + ') no-repeat 50% 50%')
-										else
-											div.tbox2
-										div.tbox3
-											h1
-												="Watch VoDs"
+
+											h1.gold
+												if (tourney.startDate)
+														=tourney.startDate.toDateString().slice(4,10)
+													=" - "
+													if (tourney.endDate)
+														=tourney.endDate.toDateString().slice(4,10)
+											p
+												=tourney.description
+													div.button
+														h1
+															="VoDs and Schedule"
 						div.clearboth
 					h1.center.smallmargin
 							a.center(href='/vods/')
@@ -85,7 +56,6 @@ block content
 					div#adh
 						+adh()
 				div#rightcontainer
-					+popular()
 					div#ad1
 						+adright()
 

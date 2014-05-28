@@ -147,6 +147,14 @@ return function (req, res) {
     };
 };
 
+exports.construction = function(db) {
+return function (req, res) {
+        res.render('construction', {
+        'title' : 'LoLClash - Under Construction'
+            });
+    };
+};
+
 exports.results = function(db) {
     return function (req, res) {
         //        

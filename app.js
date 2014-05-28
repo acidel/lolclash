@@ -34,6 +34,8 @@ if ('development' == app.get('env')) {
 
 
 db.setup(function () {
+	app.get('/', routes.construction(db));
+	/*
 	app.get('/', routes.index(db));
 	app.get('/Creating-a-rating-system-for-LoL', routes.ratingarticle(db));
 	app.get('/ajax/loadcalendar/:id', routes.buildcalendar(db) );
@@ -47,7 +49,8 @@ db.setup(function () {
 	app.get('/vods/:id', routes.eventresults(db));
 	app.get('/vods/:eventId/:vodId/:vodName', routes.vod(db));
 	app.get('/vods', routes.tourneys(db));
-	app.get('/vods/page/:id', routes.tourneys(db));
+	app.get('/vods/page/:id', routes.tourneys(db)); */
+
 });
 
 http.createServer(app).listen(app.get('port'), function () {

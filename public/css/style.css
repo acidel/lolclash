@@ -652,6 +652,7 @@ th {
 
 }
 
+
 #spotlight
 {
 	float:left;
@@ -931,6 +932,13 @@ th {
 	background-color: #131313;
 }
 
+#landing {
+	width: 920px;
+	height: 300px;
+	background-image:url("/img/landing.png");
+	background-repeat: no-repeat;
+}
+
 .filtertable {
 
 	height: 84px;
@@ -1174,11 +1182,9 @@ th {
 }
 
 #tourneylist ul li {
-		border: solid 1px #151515;
+	border: solid 1px #032843;
 	float: left;
-	width: 220px;
-	height: 151px;
-	margin-right: 20px;
+	margin-right: 1px;
 	margin-bottom: 12px;
 }
 
@@ -1209,18 +1215,13 @@ th {
 
 
 .tbox1 {
-height: 35px;
-line-height: 35px;
-padding-left: 11px;
+	float:left;
 }
 .tbox2 {
- text-align: center;
- height:75px;
+	float: right;
 }
 .tbox3 {
-padding-left: 50px;
-height: 40px;
-line-height: 40px;
+
 }
 
 #teaminfo{
